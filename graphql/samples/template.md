@@ -1,31 +1,21 @@
 # Sample GraphQL queries
 
-Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) console to run these queries.
+Please find below the list of sample queries. You can use [GrapiQL](/graphiql) console to run these queries.
 
-<style>
-.my-content code {
-  white-space: pre;
-}
-.my-content ul > li + li,
-.my-content ol > li + li {
-  margin-top: 10px;
-}
-</style>
 
-1. Simple query from stream – selects specified fields [*item*, *BRAND*, *COLOR*] from stream *items* without any grouping and filtering
+1. Selects the specified columns [Product_ID, Description] from the stream *items* sorted by *Product_ID*
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    # comments started from symbol '#'
-    query simple_query_from_stream {
+    query {
       dataset {
         streams {
           items {
             # return top 5 rows respecting current sort
-            # ascendant sort by column [item]. 3 - is a 1-based index of column [item] in stream, not in query         
-            records(take: 5, sort: [3]) {
+            # ascendant sort by column Product_ID. 1 - is a 1-based index of column Product_ID in the query         
+            records(take: 5 sort: [1]) {
               rows {
-                item
-                BRAND
-                COLOR
+                Product_ID
+                Description
               }
             }
           }
@@ -35,19 +25,19 @@ Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) 
     ```
 
 
-2. Simple query from stream with descendant sort order
+2. The same query sorting results in the descendand order.
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    # comments atarted from symbol #
-    query simple_query_from_stream_desc {
+    query {
       dataset {
         streams {
           items {
-            # Descendand sort for column [item]. For descendant sort order - negate column index should be used.  
-            records(take: 5, sort: [-3]) {
+            # return top 5 rows respecting current sort
+            # descendand sort by column Product_ID using negative column index.         
+            records(take: 5 sort: [-1]) {
               rows {
-                item
-                BRAND
-                COLOR
+                Product_ID
+                Description
               }
             }
           }
@@ -57,11 +47,12 @@ Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) 
     ```
 
 
-3. Query all columns from a report
+3. Selects ten random rows from the stored report.
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    query query_from_report {
+    query {
       dataset {
-        report(name: "model_category_last") {
+        report(name: "assort_zones") {
           rows(sample: 10)
         }
       }
@@ -69,15 +60,17 @@ Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) 
     ```
 
 
-4. Query from report with header description and additional statistics information
+4. Selects additional metadata from the stored report.
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    query query_from_report_info {
+    query {
       dataset {
-        report(name: "model_category_last") {
+        report(name: "assort_zones") {
           rows(sample: 10)
           columns {
             name
             type
+            synonym
           }
           stats {
             processTime
@@ -88,54 +81,72 @@ Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) 
     }
     ```
 
-5. Query from stream using grouping and filtering. Query *categoryid* and *category*, *status*, *date* corresponding  this category and maximum *create_time* value. Filter by *categoryid* applied.
+5. Selects data from stream with aggregation functions
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    query query_from_stream_with_grouping {
+    query {
       dataset {
         streams {
-          model_category {
-            report(dims: "categoryid", filter1: "categoryid in ['Obuwie']", vals: "last(category, create_time) as category,last(status, create_time),last(date, create_time)") {
+          items {
+            report(
+              dims: "class"
+              vals: "sum(1), min(Current_Price), max(Current_Price)"
+            	sort: [-2])
+            {
               rows
             }
           }
         }
       }
     }
-    
     ```
 
 
-6. Remove records from stream.Available only for streams with *id* column. That column should be *docid* type
+6. Appends records to a stream. Mutation returns a list of identifiers for the added records. See the added records at https://lmg.goalprofit.com/admin#/dataset/streams/test/records
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    mutation remove_records {
-      removeRecords(stream: "model_category", ids: [24, 23])
+    mutation {
+      appendRecords(
+        stream: "test"
+        format: "csv"
+        records: "abcd,12345"
+        )
     }
     ```
 
-
-7. Append records into stream - list of lists with values for rows of columns should be specified
+6. Removes records from a stream.
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    mutation append_records {
-      appendRecords(stream: "model_category", format: "json", records: "[[60, \"ATEST\", \"CATTEST\", \"pending\", \"2022-02-20\"]")
+    mutation {
+      removeRecords(
+        stream: "test"
+        ids: [0,1,2]
+        )
     }
     ```
 
-
-8. Linking streams and using linked stream's column for filtering result
+8. Selects information from linked streams
+    <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
-    query linking {
+    query {
       dataset {
         streams {
-          new_prices {
+          items {
             report(
-              dims: "item,price", 
+              dims: "item, class", 
               links: [{
-                linkName: "item", 
-                sourceName: "items", 
-                columnPairs: [{srcColumn: "item", dstColumn: "item"}]}]) {
+                linkName: "classif"
+                sourceName: "classif"
+                columnPairs: [{
+                  srcColumn: "class"
+                  dstColumn: "class"
+                }]
+              }]) {
               report(
-                dims: "item,item.COLOR,price", 
-                filter2: "item.COLOR=='WHITE'") {
+                dims: "classif.category"
+                vals: "sum(1)"
+                sort: [-2])
+              {
                 rows
               }
             }
@@ -144,5 +155,32 @@ Please find below the list of sample queries. You cane use [GrapiQL](/graphiql) 
       }
     }
     ```
-    
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<style>
+.my-content li > code {
+  white-space: pre;
+  color: var(--dark);
+  line-height: 1.25;
+  display: block;
+  background: var(--light);
+  padding: 5px;
+}
+.my-content a[onclick="setQuery(event)"] {
+  float: right;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+.my-content ul > li + li,
+.my-content ol > li + li {
+  margin-top: 10px;
+}
+</style>
+<script>
+window.setQuery = e => {
+  localStorage["graphiql:query"] = e.target.parentNode.nextSibling.innerText
+}
+</script>
     
