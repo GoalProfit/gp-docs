@@ -1,6 +1,6 @@
 # GraphQL
 
-The systme provides GraphQL API as the primary API endpoint. Please see [GraphiQL](/graphiql) console for the list of supported queries and mutations. Please find [sample queries](/pages/docs/graphql/samples).
+The systme provides GraphQL API as the primary API endpoint. Please see [GraphiQL](/graphiql) console for the list of supported queries and mutations. Please find [sample queries](samples/).
 
 * `<filter0> : <filter>` – indexed filter in the map reduce pipline
 * `<filter1> : <filter>` – indexed filter in the map reduce pipline
@@ -10,7 +10,7 @@ The systme provides GraphQL API as the primary API endpoint. Please see [GraphiQ
 * `<vals> : <formulas>` – the list of formulas used for agregation operations in the map reduce pipline
 * `<cols> : <formulas>` – the list of foumlas used to compute additional values after the map reduce pipline is complete
 
-Please see [The Complete Query Syntax Grammar](/pages/docs/grammar).
+Please see [The Complete Query Syntax Grammar](../grammar/).
 
 <style>
 .my-dark-theme .my-content {
