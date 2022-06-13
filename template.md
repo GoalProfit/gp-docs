@@ -9,7 +9,7 @@
 * [Scalability](scalability/)
 * [GraphQL API](graphql/)
 * [GraphiQL console](/graphiql)
-* [Query syntax](grammar/)
+* [Syntax grammar](grammar/)
 * [Dataset](admin/dataset/config/)
 * [Dataset streams](admin/dataset/streams/)
   * [Stream config](admin/stream/config/)

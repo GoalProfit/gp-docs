@@ -15,7 +15,7 @@ Dataset is a top-level data entry point. Besides the properties listed below dat
 
 *private* – if set, disables access for unauthorized users (anonymous access).
 
-*timezone* – sets the time zone for date & time functions used in queries. Time zone name follows the TZ database name convention described on https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+*timezone* – sets the time zone for date & time functions used in queries. Time zone name follows the TZ database name convention described on https://en.m.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 <style>
 .my-dark-theme .my-content {

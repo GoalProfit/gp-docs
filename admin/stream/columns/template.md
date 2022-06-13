@@ -2,46 +2,28 @@
 
 [Admin UI](/admin#/dataset/streams/items/columns)
 
-Stream data structure. Here is a list of columns that will be stored in the stream. When loading data, they must be ghosted into a column view and be in the same order in which the columns on this page are declared. Thus, when loading data, the order of columns is important, and when reading data, their names are important. The description of each column is an object with the following properties:
+Stream data structure. Here is a list of columns that will be stored in the stream. When loading data, they must be ghosted into a column view and be in the same order in which the columns on this page are declared. Thus, the order of columns is important when loading data and their names are important when reading data. The description of each column is an object with the following properties:
 
-*name*: string - column name. Required field
+* *name*: string - column name.
+* *type*: string - column type. See [column types](../../../types) for additional details.
+* *synonym*: string - an optional alternative name of the field.
+* *indexed*: bool - an index will be created for a column, false by default.
+* *fulltext*: bool - a full-text index will be created for a column, false by default.
+* *description*: string - optional column description.
 
-*type*: string - the type of data in the column. Required field. Valid types from the following list:
-- *docid*: 0..4294967295 - stream entry ID
-- *bool*: true/false - boolean value
-- *int8*: -128..127 - one-byte integer
-- *int16*: -32768..32767 - two-byte integer
-- *int32*: -2147483648..2147483647 - four-byte integer
-- *int64*: -9223372036854775808..9223372036854775807 - eight-byte integer
-- *float*: -128..127 - single precision floating point number
-- *double*: -128..127 - double precision floating point number
-- *date*: yyyy-mm-dd - date without time
-- *time*: hh:mm:ss - time without date
-- *datetime*: yyyy-mm-ddThh:mm:ss - date with time
-- *string*: string data
-- *json*: JSON data
+Two special columns can be defined:
 
-*synonym*: string - additional name of the field. Optional field
+```
+- name: __file__
+  type: string
+  indexed: true
+- name: __line__
+  type: int32
 
-*indexed*: bool - specifies the column index. Optional field. By default, false.
+```
 
-*fulltext*: bool - includes a full-text search. Optional field. By default, false.
-
-*description*: string - column description. Optional field
-
-It is allowed to declare two special columns:
-
-<p>
-    <pre>
-    - name: __file__
-      type: string
-    - name: __line__
-      type: int32
-    </pre>
-</p>
-
-\_\_file__ is automatically populated with the name of the file from which the record was loaded.
-\_\_line__ is automatically populated with the line number in the file from which the record was loaded.
+*\_\_file__* is automatically populated with the name of the file from which the record was loaded.
+*\_\_line__* is automatically populated with the line number in the file from which the record was loaded.
 
 <style>
 .my-dark-theme .my-content {

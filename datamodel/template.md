@@ -36,4 +36,11 @@
     color: rgb(88,167,202);
 }
 code { white-space: pre; }
+.my-content img {
+    margin: 10px 0;
+    max-width: 100%;
+}
+.my-dark-theme .my-content img {
+    filter: invert(100%);
+}
 </style>
