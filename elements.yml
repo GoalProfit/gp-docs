@@ -1,0 +1,28 @@
+categories:
+    stream: items
+    dims:
+        - classif.category
+    multiple: true
+    
+items:
+    stream: items
+    dims:
+        - item
+    vals:
+        - calc: Opisanie_dlia_Tsennika
+          name: Описания для ценника
+          
+stocks:
+    stream: stocks
+    dims:
+        - datetime.date
+    vals:
+        - sum(inventory)
+    initialSort: [1]
+    x: d3.scaleTime()
+    y: d3.scaleLinear()
+    elasticX: true
+    elasticY: true
+    brushOn: false
+    marginTop: 30
+    marginLeft: 60
