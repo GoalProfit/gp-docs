@@ -13,11 +13,11 @@ GoalProfit platform is built on the following fundamental principles:
 
 *Vertical integration* – the platform provides a vertically and seamlessly integrated technology stack, including data storage, data transformation, data integration, analytics components, business application runtime, and an interactive development environment.
 
-*Vertical and horizontal scalability* – the platform can efficiently utilize available hardware resources in single server and cluster configurations with near-linear scalability.
+*Vertical and horizontal scalability* – the platform can efficiently utilize available hardware resources in a single server and cluster configurations with near-linear scalability.
 
 *Reliability and fault tolerance* – the platform is designed to operate in high availability mode and resist catastrophic hardware failures.
 
-*Data multi-versioning and no data locks* – the platform embraces a functional design paradigm leveraging immutability, persistent data structures, and control of side effects. It allows eliminating data locks while querying and modifying big data sets at the same time.
+*Data multi-versioning and no data locks* – the platform embraces a functional design paradigm leveraging immutability, persistent data structures, and control of side effects. It eliminates data locks while querying and modifying big data sets at the same time.
 
 *Embedded interactive development environment* – the platform provides an embedded interactive development environment (IDE). The IDE embraces live editing and WYSIWYG approaches to enable the rapid development of data-rich and analytics-powered business applications.
 
