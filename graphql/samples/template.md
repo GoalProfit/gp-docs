@@ -12,11 +12,8 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
           items {
             # return top 5 rows respecting current sort
             # ascendant sort by column Product_ID. 1 - is a 1-based index of column Product_ID in the query         
-            records(take: 5 sort: [1]) {
-              rows {
-                Product_ID
-                Description
-              }
+            report(dims: "Product_ID" vals: "Description" sort: [1]) {
+              rows(take: 5) 
             }
           }
         }
@@ -33,12 +30,9 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
         streams {
           items {
             # return top 5 rows respecting current sort
-            # descendand sort by column Product_ID using negative column index.         
-            records(take: 5 sort: [-1]) {
-              rows {
-                Product_ID
-                Description
-              }
+            # ascendant sort by column Product_ID. 1 - is a 1-based index of column Product_ID in the query         
+            report(dims: "Product_ID" vals: "Description" sort: [-1]) {
+              rows(take: 5) 
             }
           }
         }
