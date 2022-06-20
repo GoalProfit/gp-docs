@@ -3,7 +3,7 @@
 Please find below the list of sample queries. You can use [GrapiQL](/graphiql) console to run these queries.
 
 
-1. Selects the specified columns [Product_ID, Description] from the stream *items* sorted by *Product_ID*
+1. Select the specified columns [Product_ID, Description] from the stream *items* sorted by *Product_ID*
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -41,7 +41,7 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     ```
 
 
-3. Selects ten random rows from the stored report.
+3. Select ten random rows from the stored report.
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -54,7 +54,7 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     ```
 
 
-4. Selects additional metadata from the stored report.
+4. Select additional metadata from the stored report.
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -75,7 +75,7 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     }
     ```
 
-5. Selects data from stream with aggregation functions
+5. Select data from stream with aggregation functions
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -96,30 +96,28 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     ```
 
 
-6. Appends records to a stream. Mutation returns a list of identifiers for the added records. See the added records at https://lmg.goalprofit.com/admin#/dataset/streams/test/records
+6. Append records to a stream. Mutation returns a list of identifiers for the added records. See the added records at https://lmg.goalprofit.com/admin#/dataset/streams/test/records
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     mutation {
       appendRecords(
         stream: "test"
         format: "csv"
-        records: "abcd,12345"
-        )
+        records: "abcd,12345")
     }
     ```
 
-6. Removes records from a stream.
+6. Remove records from a stream.
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     mutation {
       removeRecords(
         stream: "test"
-        ids: [0,1,2]
-        )
+        ids: [0,1,2])
     }
     ```
 
-8. Selects information from linked streams
+8. Select information from linked stream
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -127,7 +125,7 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
         streams {
           items {
             report(
-              dims: "item, class", 
+              dims: "item, class"
               links: [{
                 linkName: "classif"
                 sourceName: "classif"

@@ -19,6 +19,7 @@ Two special columns can be defined:
   indexed: true
 - name: __line__
   type: int32
+
 ```
 
 *\_\_file__* is automatically populated with the name of the file from which the record was loaded.

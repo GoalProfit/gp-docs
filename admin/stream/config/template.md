@@ -26,32 +26,3 @@
 
 * *vars*: object – stream variables. Is an object whose keys are variable names and whose values are default variable values.
 
-* *links*: object[] – set up links to other streams and reports. The linked stream/report data is accessed through the linkName.field1 point. Object structure:
-  - *linkName*: string - link name
-  - *sourceName*: string - name of the stream/report to be linked
-  - *columnPairs*: object[] - list of columns to link to:
-    - *srcColumn*: string - column in the current stream
-    - *dstColumn*: string - column in link stream/report
-
-* *funcs*: object[] – computed columns:
-  - *name*: string - column name
-  - *calc*: string - the formula by which the column value is calculated
-  - *args*: string[] - formula args ???
-
-
-<style>
-.my-dark-theme .my-content {
-    color: var(--light)
-}
-.my-dark-theme .my-content h1,
-.my-dark-theme .my-content h2,
-.my-dark-theme .my-content h3,
-.my-dark-theme .my-content h4,
-.my-dark-theme .my-content h5 {
-    color: white;
-}
-.my-content b,i,em {
-    color: rgb(88,167,202);
-}
-code { white-space: pre; }
-</style>

@@ -23,7 +23,7 @@ The system provides SQL-like syntax to query data controlled by the following pa
 * `dims: formulas` – The list of formulas used for the group by operation in the map-reduce pipeline.
 * `vals: formulas` – The list of formulas used for aggregation operations in the map-reduce pipeline.
 * `cols: formulas` – The optional list of formulas used to compute additional values after the map-reduce pipeline is complete. `cols` are defaulted to `dims + vals` if not set.
-* `sort : [integer]` – Indexes of columns to sort resulting rows
+* `sort: [integer]` – Indexes of columns to sort resulting rows
 
 The SQL mnemonic for the query syntax is the following:
 
