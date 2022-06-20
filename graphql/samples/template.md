@@ -3,7 +3,7 @@
 Please find below the list of sample queries. You can use [GrapiQL](/graphiql) console to run these queries.
 
 
-1. Select the specified columns [Product_ID, Description] from the stream *items* sorted by *Product_ID*
+1. Select the specified columns [item, name] from the stream *items* sorted by *item*
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     query {
@@ -11,8 +11,8 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
         streams {
           items {
             # return top 5 rows respecting current sort
-            # ascendant sort by column Product_ID. 1 - is a 1-based index of column Product_ID in the query         
-            report(dims: "Product_ID" vals: "Description" sort: [1]) {
+            # ascendant sort by column item. 1 - is a 1-based index of column item in the query         
+            report(dims: "item" vals: "name" sort: [1]) {
               rows(take: 5) 
             }
           }
@@ -30,8 +30,8 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
         streams {
           items {
             # return top 5 rows respecting current sort
-            # ascendant sort by column Product_ID. 1 - is a 1-based index of column Product_ID in the query         
-            report(dims: "Product_ID" vals: "Description" sort: [-1]) {
+            # ascendant sort by column item. 1 - is a 1-based index of column item in the query         
+            report(dims: "item" vals: "name" sort: [-1]) {
               rows(take: 5) 
             }
           }
@@ -81,13 +81,13 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     query {
       dataset {
         streams {
-          items {
+          competitors {
             report(
-              dims: "class"
-              vals: "sum(1), min(Current_Price), max(Current_Price)"
-            	sort: [-2])
+              dims: "item.class, competitor_name"
+              vals: "sum(1), min(competitor_price), max(competitor_price)"
+              sort: [-2])
             {
-              rows
+              rows(sample:10)
             }
           }
         }
@@ -96,7 +96,7 @@ Please find below the list of sample queries. You can use [GrapiQL](/graphiql) c
     ```
 
 
-6. Append records to a stream. Mutation returns a list of identifiers for the added records. See the added records at https://lmg.goalprofit.com/admin#/dataset/streams/test/records
+6. Append records to a stream. Mutation returns a list of identifiers for the added records. See the added records at stream test [page](/admin#/dataset/streams/test/records).
     <a href="/graphiql" target="_blank" onclick="setQuery(event)">try</a>
     ```
     mutation {
