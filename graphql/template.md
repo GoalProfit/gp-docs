@@ -27,7 +27,7 @@ The system provides SQL-like syntax to query data controlled by the following pa
 
 The SQL mnemonic for the query syntax is the following:
 
-> 
+> ```
 > SELECT cols FROM (
 >   SELECT dims, vals
 >   FROM source
@@ -36,7 +36,7 @@ The SQL mnemonic for the query syntax is the following:
 >   HAVING filter3
 > )
 > SORT BY sort
-> 
+> ```
 
 <style>
 .my-dark-theme .my-content {
