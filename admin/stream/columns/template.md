@@ -1,4 +1,4 @@
-# Stream columns
+# Stream Columns
 
 [Admin UI](/admin#/dataset/streams/items/columns)
 
@@ -13,31 +13,13 @@ Stream data structure. Here is a list of columns that will be stored in the stre
 
 Two special columns can be defined:
 
-```
+```yaml
 - name: __file__
   type: string
   indexed: true
 - name: __line__
   type: int32
-
 ```
 
 *\_\_file__* is automatically populated with the name of the file from which the record was loaded.
 *\_\_line__* is automatically populated with the line number in the file from which the record was loaded.
-
-<style>
-.my-dark-theme .my-content {
-    color: var(--light)
-}
-.my-dark-theme .my-content h1,
-.my-dark-theme .my-content h2,
-.my-dark-theme .my-content h3,
-.my-dark-theme .my-content h4,
-.my-dark-theme .my-content h5 {
-    color: white;
-}
-.my-content b,i,em {
-    color: rgb(88,167,202);
-}
-code { white-space: pre; }
-</style>

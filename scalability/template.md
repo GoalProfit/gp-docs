@@ -1,4 +1,4 @@
-# Analytical Server Scalability
+# Scalability
 
 GoalProfit platform supports the following cluster deployment:
 

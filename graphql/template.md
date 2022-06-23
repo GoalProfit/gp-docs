@@ -27,30 +27,13 @@ The system provides SQL-like syntax to query data controlled by the following pa
 
 The SQL mnemonic for the query syntax is the following:
 
-> ```
-> SELECT cols FROM (
->   SELECT dims, vals
->   FROM source
->   WHERE filter0 AND filter1 AND filter2
->   GROUP BY dims
->   HAVING filter3
-> )
-> SORT BY sort
-> ```
-
-<style>
-.my-dark-theme .my-content {
-    color: var(--light)
-}
-.my-dark-theme .my-content h1,
-.my-dark-theme .my-content h2,
-.my-dark-theme .my-content h3,
-.my-dark-theme .my-content h4,
-.my-dark-theme .my-content h5 {
-    color: white;
-}
-.my-content b,i,em {
-    color: rgb(88,167,202);
-}
-code { white-space: pre; }
-</style>
+```sql
+SELECT cols FROM (
+  SELECT dims, vals
+  FROM source
+  WHERE filter0 AND filter1 AND filter2
+  GROUP BY dims
+  HAVING filter3
+)
+SORT BY sort
+```

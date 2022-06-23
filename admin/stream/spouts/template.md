@@ -1,4 +1,4 @@
-# Stream spouts
+# Stream Spouts
 
 [Admin UI](/admin#/dataset/streams/items/spouts)
 
@@ -43,7 +43,7 @@ Spout loads files from a given directory that matches a given mask.
  
 DelimitedFile configuration example:
 
-```
+```yaml
 - type: DelimitedFile
   searchPath: ../inbox
   searchMask: out_assort_.*.csv.gz
@@ -75,7 +75,6 @@ DelimitedFile configuration example:
     timeFormats: []
     datetimeFormats:
       - '%Y-%m-%d %H:%M:%S%.3f'
-
 ```
 
 ## ExternalProcess spout – loading data using an external program
@@ -120,7 +119,8 @@ The spout settings are the following:
   - *datetimeFormats*: string[] - date formats with time. When parsing datetime values, formats are used in the order in which they are defined. Syntax of possible formats: https://docs.rs/chrono/0.4.0/chrono/format/strftime/index.html
  
 ExternalProcess configuration example:
-```
+
+```yaml
 - type: ExternalProcess
   config: '{}'
   state: 'null'
@@ -178,20 +178,3 @@ ExternalProcess configuration example:
       - '%Y%m%d%H%M%S'
       - '%Y%m%d'
 ```
-
-<style>
-.my-dark-theme .my-content {
-    color: var(--light)
-}
-.my-dark-theme .my-content h1,
-.my-dark-theme .my-content h2,
-.my-dark-theme .my-content h3,
-.my-dark-theme .my-content h4,
-.my-dark-theme .my-content h5 {
-    color: white;
-}
-.my-content b,i,em {
-    color: rgb(88,167,202);
-}
-code { white-space: pre; }
-</style>

@@ -1,4 +1,4 @@
-# Stream configuration
+# Stream Config
 
 [Admin UI](/admin#/dataset/streams/items/config)
 
