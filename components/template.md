@@ -10,17 +10,6 @@ The frontend consists of an application runtime, integrated development environm
 * *Retail-specific components* is a set of components designed to perform retail-specific tasks. The pricing strategy editor is an example of such a component.
 * *Custom components* – the system can be extended by customer or integrator provided components implemented in Vue or as a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 
-
-<style>
-.my-content img {
-    margin: 10px 0;
-    max-width: 100%;
-}
-.my-dark-theme .my-content img {
-    filter: invert(100%);
-}
-</style>
-
 ![System components](/pages/docs/GoalProfit%20components.svg?v2)
 
 ## Backend Components
@@ -42,3 +31,12 @@ The analytical server consists of the following components:
 
 *Optimization service* micro-service executes optimization jobs and can be optionally deployed as a function to a supported FaaS platform.
 
+<style>
+.my-content img {
+    margin: 10px 0;
+    max-width: 100%;
+}
+.my-dark-theme .my-content img {
+    filter: invert(90%);
+}
+</style>

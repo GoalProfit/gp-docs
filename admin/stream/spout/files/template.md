@@ -1,4 +1,4 @@
-# Stream files
+# Stream Files
 
 [Admin UI](/admin#/dataset/streams/items/files)
 

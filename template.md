@@ -1,4 +1,4 @@
-# <a href="/pages/"><img src="../logo.png"/></a> – Documentation
+# Documentation
 
 GoalPlatform is the platform for the rapid development of reliable business applications.
 
