@@ -1,4 +1,6 @@
-# GoalProfit - Platform for the rapid development of reliable business applications
+# <a href="/pages/"><img src="../logo.png"/></a> – Documentation
+
+GoalPlatform is the platform for the rapid development of reliable business applications.
 
 ## Glossary
 
@@ -25,3 +27,12 @@
   * [Timeframe](admin/timeframe/config/)
   * [Format](admin/format/config/)
   * [Formula](admin/formula/config/)
+
+<style>
+h1 img {
+  display: inline-block;
+  height: 22px;
+  margin-top: -3px;
+  margin-left: -16px;
+}
+</style>

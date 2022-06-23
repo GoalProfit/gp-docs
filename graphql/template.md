@@ -9,21 +9,21 @@ See [Syntax Grammar](../grammar/) for the complete list of supported types and o
 
 The system provides SQL-like syntax to query data controlled by the following parameters.
 
-* `source: symbol` – Data source can be a stream or a report.
-* `filter0: filter` – Indexed filter in the map-reduce pipeline.
+* *source*: symbol – Data source can be a stream or a report.
+* *filter0*: filter – Indexed filter in the map-reduce pipeline.
   This filter performs a coarse selection of source chunks to keep only chunks that have requested data.
-  As this filter operates at chunk level, `filter1` or `filter2` are required for the fine-grained filtering.
-* `filter1: filter` – Indexed filter in the map-reduce pipeline.
-  This filter performs an efficient indexed lookup for desired rows within each source chunk that passed `filter0`.
-* `filter2: expression` – Generic filter in the map-reduce pipeline.
-  This filter is applied to each row that passes indexed `filter0` and `filter1`.
-  This filter supports a wide range of operations allowed by the `expression` type.
-* `filter3: expression` – Generic filter in the map-reduce pipeline.
+  As this filter operates at chunk level, *filter1* or *filter2* are required for the fine-grained filtering.
+* *filter1*: filter – Indexed filter in the map-reduce pipeline.
+  This filter performs an efficient indexed lookup for desired rows within each source chunk that passed *filter0*.
+* *filter2*: expression – Generic filter in the map-reduce pipeline.
+  This filter is applied to each row that passes indexed *filter0* and *filter1*.
+  This filter supports a wide range of operations allowed by the expression type.
+* *filter3*: expression – Generic filter in the map-reduce pipeline.
   This filter is applied to every row in the resulting report.
-* `dims: formulas` – The list of formulas used for the group by operation in the map-reduce pipeline.
-* `vals: formulas` – The list of formulas used for aggregation operations in the map-reduce pipeline.
-* `cols: formulas` – The optional list of formulas used to compute additional values after the map-reduce pipeline is complete. `cols` are defaulted to `dims + vals` if not set.
-* `sort : [integer]` – Indexes of columns to sort resulting rows
+* *dims*: formulas – The list of formulas used for the group by operation in the map-reduce pipeline.
+* *vals*: formulas – The list of formulas used for aggregation operations in the map-reduce pipeline.
+* *cols*: formulas – The optional list of formulas used to compute additional values after the map-reduce pipeline is complete. *cols* are defaulted to *dims* + *vals* if not set.
+* *sort*: [integer] – Indexes of columns to sort resulting rows
 
 The SQL mnemonic for the query syntax is the following:
 
