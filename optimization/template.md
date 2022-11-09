@@ -1,5 +1,5 @@
 
-<h1>Входные данные для оптимиазции</h1>
+<h1>Входные данные для оптимизации</h1>
 
 Оптимиазация на вход принимает данные в структуре json файла.
 Cтруктура входного json файла:
@@ -10,19 +10,19 @@ Cтруктура входного json файла:
   // уникальный идентификатор конфига (optional)
   "config_id":"",    
   
-  // идентификатор библиотеки правил на основе которой сделан входной файл для оптимиазции
+  // идентификатор библиотеки правил на основе которой сделан входной файл для оптимизации
   "config_name":"", 
   
   // идентификатор пользователя (optional)
   "create_user":"",  
   
-  // дата запуска оптимиазции (optional)
+  // дата запуска оптимизации (optional)
   "create_time":"",  
 
   // фрейм данных, определяющий сферу применения оптимизации
   "items": <data_frame>,
 
-  // Список правил оптимиазции
+  // Список правил оптимизации
   "rules": Vec <<SamePrice> | <PctChange> | <Relations> | <FixedPrice> | <InitialPrice> | <BalancedOptimization>>,
 
   // Список правил, которые применяются после нахождения оптимальной цены
@@ -37,7 +37,7 @@ Cтруктура входного json файла:
   // тонкая настройка оптимизации
   "opt_configuration": Dict<String, Vec<Value>>,
   
-  // настройка для вывода дополнительных колонок в результатах оптимиазции
+  // настройка для вывода дополнительных колонок в результатах оптимизации
   // "output_configuration": {
   //   "columns":["item","current_price"]
   // }
@@ -524,7 +524,7 @@ Cтруктура входного json файла:
   
   type: "balanced_optimization",
 
-  // цель оптимиазции: "margin" или "revenue" или "demand" или "adjusted_margin"
+  // цель оптимизации: "margin" или "revenue" или "demand" или "adjusted_margin"
   goal: Option<String>,
   
   // нижняя граница допустимого отклонения от текущей цены
@@ -552,9 +552,9 @@ Cтруктура входного json файла:
 ```
 
 
-<h1>Результат оптимиазции</h1>
+<h1>Результат оптимизации</h1>
 
-Результат оптимиазции оформляется в виде csv файла, содержащий следующую структуру:
+Результат оптимизации оформляется в виде csv файла, содержащий следующую структуру:
  - колонки - атрибут  
  - строки - продукт
 
@@ -622,7 +622,7 @@ Cтруктура входного json файла:
 }
 ```
 
-Результат оптимиации
+Результат оптимизации
 ```csv
 pl_index,currentPrice,optimalPrice,newPrice,pct_change|currentPrice|error,pct_change|currentPrice|status,pct_change|currentPrice|leftBound,pct_change|currentPrice|rightBound,pct_change|currentPrice|target,current_price,finalPrice,pct_change|optimalPrice|error,pct_change|optimalPrice|status,pct_change|optimalPrice|leftBound,pct_change|optimalPrice|rightBound,pct_change|optimalPrice|target,pct_change|finalPrice|error,pct_change|finalPrice|status,pct_change|finalPrice|leftBound,pct_change|finalPrice|rightBound,pct_change|finalPrice|target,item
 0,1.00,1.20,,0.10,1.00,1.10,1.30,0.00,1.00,1.20,0.00,1.00,1.10,1.30,0.00,0.00,1.00,1.10,1.30,0.00,p1
