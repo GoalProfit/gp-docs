@@ -40,7 +40,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
      ```
 * ssh [customer]
   * copy ZFS scripts to ~/zfs/
-  * setup ZFS
+  * [setup ZFS](../zfs)
   * setup [instance] -> [backup server] authentication
     * sudo su
     * ssh-keygen
