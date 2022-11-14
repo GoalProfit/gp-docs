@@ -13,11 +13,8 @@ The system is built on the basis of the ELT (Extract, Load, Transform) process, 
 * transformation and cleanup to fit the needs of the business model - transform.
 
 ## Accessing GoalProfit platform
-
-## Key Features
-
-
-## Administration panel
+## Key Features & Functional description
+### Administration panel
 
 * Config
 * Streams
@@ -27,8 +24,7 @@ The system is built on the basis of the ELT (Extract, Load, Transform) process, 
 * Users
 * Flow
 
-
-## Navigating the interface
+### Navigating the interface
 
 Basic interface - a web interface for users to work with the application. 
 It is a set of pre-configured pages with static addresses and user-created pages. 
@@ -43,9 +39,8 @@ List of preconfigured pages:
 
 User-created pages are created blank by default. If, after creation, the content of the page is not edited, then it is not saved in the system.
 
-## GraphiQL console
-## Additional services
-
+### GraphiQL console
+### Additional services
 ###### Combined file collection service
 ###### File upload service via Drag&Drop
 ###### Service for unloading data from the system
@@ -78,6 +73,8 @@ Common \<header> parameters used in rules:
 
 > IMPORTANT!: If you enter {parameter name} in the text parameter, then the parameter becomes available for editing by the user in the interface.
 
+For more information of about the pricing rules, please check .
+
 ### Types of optimization
 
 #### Strong optimization
@@ -86,7 +83,11 @@ Strict optimization is another rule configured through the pricing module interf
 #### Balanced Optimization
 Balanced optimization works in the same way as strict optimization, but it cannot violate other rules, giving price recommendations only in the price range that does not violate any other rule.
 
-###### Pricing module interface
+### Pricing module interface
+
+The interface of the pricing module is represented by the pages root page and several adjacent pages, which will be listed below. It serves for compiling price rules, generating reports on various metrics, optimizing prices and compiling price recommendations.
+
+For more details,
 
 ## Forecast module
 
@@ -112,6 +113,27 @@ Custom hyperparameters:
 
 This submodule calculates seasonal curves and holidays, detecting the latter automatically based on anomalies in the statistics. Floating holidays, such as Easter, are also taken into account if their deviation is within four weeks.
 
+List of configurable hyperparameters:
+* season_rolling_window - size of the rolling window in days
+* covid - special periods that are excluded from statistics
+  * covidRightDays, covidLeftDays - size of smoothing barriers on the left and right in days
+* fine tune holidays detection parameters - parameters for calculating special holidays:
+  * special_events_rolling_window, special_events_grubbs_alpha
+
+Configuration example:
+
+```
+"CATEGORY_NAME": {
+"season": {
+"season_rolling_window": 63
+ "covid": [("2020-02-23", "2020-06-01")]
+ "special_events_rolling_window": 21,
+ "special_events_grubbs_alpha": 2,
+ "covidLeftDays": 15,
+ "covidRightDays": 120,
+}
+}
+```
 ### Hyperparameter fitting module
 
 The hyperparameter fitting module uses the engine tuning technology described below to fit or adjust a set of hyperparameters to calculate a category prediction.
@@ -187,6 +209,17 @@ csv files must comply with the rfc4180 standard and be encoded in UTF-8.
 ## Best Practices & Common Questions
 
 What is test server IP?
+
+### References
+
+For more details, please check:
+
+* Product Requirement documentation
+* UI style guide & product map
+* Software architecture design
+* API documentation
+* FAQ
+* Our Support Protal 
 
 
 
