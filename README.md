@@ -1,6 +1,6 @@
 # User Administration Guide
 
-The Administratin Guide provides conceptual information about the GoalProfit product. This book defines terminology and includes implementation scenarios.
+The Administration Guide provides conceptual information about the GoalProfit product. This book defines terminology and includes implementation scenarios.
 
 ## Overview
 
@@ -13,6 +13,13 @@ The system is built on the basis of the ELT (Extract, Load, Transform) process, 
 * transformation and cleanup to fit the needs of the business model - transform.
 
 ## Accessing GoalProfit platform
+
+### Users and Role Model Administration
+
+Users in the system can be created both locally and imported through external authorization systems. The system supports integration with MIRACL, Active Directory.
+Passwords and roles of external users are managed in an external system. 
+
+
 ## Key Features & Functional description
 ### Administration panel
 
@@ -40,11 +47,33 @@ List of preconfigured pages:
 User-created pages are created blank by default. If, after creation, the content of the page is not edited, then it is not saved in the system.
 
 ### GraphiQL console
-### Additional services
-###### Combined file collection service
-###### File upload service via Drag&Drop
-###### Service for unloading data from the system
 
+### Additional services
+#### Combined file collection service
+
+The unified view combined combines information about the cost of goods, sales, stocks, promotional activity in a historical perspective. It is one of the main sources of data in application, modeling and price optimization.
+
+When new transactional data arrives, the platform can automatically start a recalculation for the last seven (by default) days to take into account “lagging” data - transaction trailing.
+The number of days for recalculation can be configured separately.
+At the stage of forming the combined view, complex logics can be applied, for example, by calculating the cost of goods.
+
+#### File upload service via Drag&Drop
+
+The service allows you to upload files via the web user interface to the server. It supports uploading files with xlsx, csv extension.
+It is possible to upload files in bulk, for this to move the selected files to the Drag&Drop area at the same time.
+
+The file placed in the Drag&Drop area is uploaded using the POST method to the microservice inside the Retail module, which uploads the file to the system server into /data/lenta/retail directory.
+
+#### Service for exporting data from the system
+
+This module is responsible for exporting data from the system. By default, it can be found at https://<instance name>/pages/new_price_count/.
+The following options are available:
+* Export to file - export data in txt format. The file name has the following mask: <Client code>_<today's date in YYYYMMDD format>.txt
+* Export to SFTP - export data to the sftp server.
+
+A script is launched that generates a POST request /export_prices to the Retail microservice. This request to Retail is open and can be executed from the outside, by a script, according to a schedule, and so on.
+The parameters of the name of the uploaded file, its attribute composition and the SFTP server are written inside the Retail microservice.
+ 
 ## Pricing module
 
 The pricing module is used to calculate price recommendations based on price rules and established optimization principles.
@@ -200,10 +229,34 @@ csv files must comply with the rfc4180 standard and be encoded in UTF-8.
 * When downloading large amounts of data, you can use GZIP to compress the downloaded file.
 * When loading a new version of data for an already existing report, the location of the attributes must match the previously loaded files.
 
-###### Configuring reports & pricing modules
-###### Algorithm for creating new or editing existing reports
-###### Setting up price rules
+### Configuring reports & pricing modules
+ 
+Reports are entities that exist on top of the data entered into the system and serve for aggregation, unification, and application of other business logics. They can use each other. 
+ 
+You can use the Graphiql console to view the report result. Reports are linked to streams, so they can also be accessed (via streams in the frontend).
+ 
+### Algorithm for creating new or editing existing reports
+ 
+> IMPORTANT!: When switching to another tab, the system does not save the manual changes inside the admin panel. To save the changes, click Submit changes.
+* Log in using https://<instance name>/admin.
+* Go to the Reports tab.
+* Press Create report.
+* Enter the name of the report in the input window.
+ 
+##### Setting up price rules
 
+ 
+Item | Color | Gov ruler | Brand | Purchase price | Selling price
+ --- | --- | --- |--- | --- | --- | 
+Saucepan | Red | Color | A | 50   | 100
+Saucepan | Blue  | Color | A | 50 | 120 |
+Saucepan | Green | Color | B | 50 | 140 |
+Saucepan | White | Color | B | 50 | 160 |
+ 
+Let's set up for these products the rules of the horizontal line (SamePrice), brand price ratios (Relation), and margins (PctChange).
+A new rule is created in the page editor (design mode) on the Settings tab (Elements)
+
+                                                                                                        
 ## Troubleshooting
 ## Auditing Events
 ## Best Practices & Common Questions
