@@ -102,7 +102,7 @@ Common \<header> parameters used in rules:
 
 > IMPORTANT!: If you enter {parameter name} in the text parameter, then the parameter becomes available for editing by the user in the interface.
 
-For more information of about the pricing rules, please check .
+For more information of about the pricing rules, please check [Existing & Custom Pricing rules](documentation/).
 
 ### Types of optimization
 
@@ -116,14 +116,15 @@ Balanced optimization works in the same way as strict optimization, but it canno
 
 The interface of the pricing module is represented by the pages root page and several adjacent pages, which will be listed below. It serves for compiling price rules, generating reports on various metrics, optimizing prices and compiling price recommendations.
 
-For more details,
+For more details, please check the [UI Guide](documentation/).
 
 ## Forecast module
 
 The forecasting module is used to predict various indicators: elasticity, demand (including seasonal demand), whether it is necessary to buy additional goods.
 The output of the module can be used either for direct evaluation by the client or in an optimization process in the pricing module.
 The module accepts historical data and a set of hyperparameters as input.
-The general scheme of the module operation is presented below:
+
+The module launches a virtual machine in the cloud, copies the combined files to it using rsync, then cuts them into categories, while using the last mapping of the category products. Then the module gets the last attribute, starts modeling, segmentation and kvi. Each process creates files that are copied back to the server using rsync. The model trims the data at the end of the week, so the module runs once a week.
 
 ### Elasticity
 
@@ -202,10 +203,10 @@ Think about additional features (May be creating pages and some other objects)
 The system assumes several types of data loading.
 Loading data into the system is implemented through file import
 The following import methods are provided:
-* Loading from the integration area on the server (implemented)
-* Drag&drop in the front module of the system (under implementation)
-* Api TBD (under implementation)
-* TBD understand upload via ODBC and kafka
+* Loading from the integration area on the server
+* Drag&drop in the front module of the system 
+* upload via API
+* upload via ODBC and kafka
 
 #### Data storage approach
 
@@ -238,7 +239,7 @@ You can use the Graphiql console to view the report result. Reports are linked t
 ### Algorithm for creating new or editing existing reports
  
 > IMPORTANT!: When switching to another tab, the system does not save the manual changes inside the admin panel. To save the changes, click Submit changes.
-* Log in using https://<instance name>/admin.
+* Log in using https://\<instance name\>/admin.
 * Go to the Reports tab.
 * Press Create report.
 * Enter the name of the report in the input window.
@@ -267,15 +268,15 @@ What is test server IP?
 
 For more details, please check:
 
-* Product Requirement documentation
-* UI style guide & product map
-* Software architecture design
-* API documentation
-* FAQ
-* Our Support Protal 
+* [Product Requirement documentation](documentation/)
+* [UI style guide & product map](documentation/)
+* [Software architecture design](documentation/)
+* [API documentation](documentation/)
+* [FAQ](documentation/)
+* Our Support Portal 
 
 
 
 ## Legal Notice
 
-For information about legal notices, trademarks, disclaimers, warranties, export and other use restrictions, patent policy, and FIPS compliance, see .
+For information about legal notices, trademarks, disclaimers, warranties, export and other use restrictions, patent policy, and FIPS compliance, see [GoalProfit - Legal Page](documentation/).
