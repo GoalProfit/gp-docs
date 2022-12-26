@@ -27,7 +27,11 @@ GoalPlatform is the platform for the rapid development of reliable business appl
   * [Timeframe](admin/timeframe/config/)
   * [Format](admin/format/config/)
   * [Formula](admin/formula/config/)
-
+* [Documentation, Guides & Resources](../gp-internal-docs/)
+  * [User Guide](../gp-internal-docs/user_guide/)
+  * [Admin Guide](../gp-internal-docs/admin_guide/)
+  * [Price Optimization](../gp-internal-docs/price_rules/)
+  * [Markdown Optimization](../gp-internal-docs/markdown/)
 <style>
 h1 img {
   display: inline-block;
