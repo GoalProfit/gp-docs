@@ -34,6 +34,7 @@ GoalPlatform is the platform for the rapid development of reliable business appl
   * [Admin Guide](../gp-internal-docs/admin_guide/)
   * [User Guide: Price Optimization](../gp-internal-docs/price_rules/)
   * [User Guide: Markdown Optimization](../gp-internal-docs/markdown/)
+  * [User Guide: PIM AI](../gp-internal-docs/pim)
 
 <style>
 h1 img {
@@ -43,7 +44,7 @@ h1 img {
   margin-left: -16px;
 }
 ul {
-  line-height: 1.7;
+  line-height: 1.;
  padding-top: 9px;
 }
 }
