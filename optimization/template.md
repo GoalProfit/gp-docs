@@ -192,7 +192,7 @@ Example - "price line"
 }
 ```   
 
-<h2>Правило PctChange</h2>
+<h2>Rule PctChange</h2>
 The recommended price of the goods must be within the established min / max bound limits relative to the given price. The limits of min and max are set as a percentage.
 
 ```json
@@ -218,7 +218,7 @@ The recommended price of the goods must be within the established min / max boun
 }
 ```
 
-Пример - “Minimum markup threshold”
+Example - “Minimum markup threshold”
 ```json
 {
       "type": "pct_change",
@@ -262,7 +262,7 @@ The recommended price of the goods must be within the established min / max limi
 }
 ```
 
-Пример - “Acceptable Change Rule”
+Example - “Acceptable Change Rule”
 ```json
 {
       "type": "abs_change",
@@ -279,7 +279,7 @@ The recommended price of the goods must be within the established min / max limi
       "target": null
     },
 ```
-<h2>Правило InitialPrice</h2>
+<h2>Rule InitialPrice</h2>
 Determine the price to which optimization will strive, provided that all other rules are not violated.
 
 ```json
@@ -312,7 +312,7 @@ Example - “Do not change the current price if it does not violate any rules”
 }
 ```
 
-<h2>Правило Relations</h2>
+<h2>Rule Relations</h2>
 Rule of maximum/minimum price deviation between product groups.
 
 ```json
