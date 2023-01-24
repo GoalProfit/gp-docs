@@ -1,43 +1,43 @@
 
-<h1>Входные данные для оптимизации</h1>
+<h1>Input data for optimization</h1>
 
-Оптимиазация на вход принимает данные в структуре json файла.
-Cтруктура входного json файла:
+Input optimization accepts data in the json file structure.
+The structure of the input json file:
 
 ```json
 {
-  // Общая информация
-  // уникальный идентификатор конфига (optional)
+  // General information
+  // Unique config ID (optional)
   "config_id":"",    
   
-  // идентификатор библиотеки правил на основе которой сделан входной файл для оптимизации
+  //  Rules library that serves as the foundation for the input file used in optimization
   "config_name":"", 
   
-  // идентификатор пользователя (optional)
+  // User ID (optional)
   "create_user":"",  
   
-  // дата запуска оптимизации (optional)
+  // Optimization start date (optional)
   "create_time":"",  
 
-  // фрейм данных, определяющий сферу применения оптимизации
+  // Data frame defining the scope of the optimization
   "items": <data_frame>,
 
-  // Список правил оптимизации
+  // List of optimization rules
   "rules": Vec <<SamePrice> | <PctChange> | <AbsChange> | <Relations> | <FixedPrice> | <InitialPrice> | <BalancedOptimization>>,
 
-  // Список правил, которые применяются после нахождения оптимальной цены
+  // List of rules that are applied after finding the optimal price
   "post_rules": Vec <<FixedPrice> | <RoundingRange> | <PctChange> | <MinPriceChange>>
 
-  // модельные параметры
+  // Model parameters
   "modeling": {
     "params":  <data_frame>,
     "season":  <data_frame>
   }
 
-  // тонкая настройка оптимизации
+  // Fine-tuning optimization
   "opt_configuration": Dict<String, Vec<Value>>,
   
-  // настройка для вывода дополнительных колонок в результатах оптимизации
+  // setting to display additional columns in the optimization results
   // "output_configuration": {
   //   "columns":["item","current_price"]
   // }
@@ -46,7 +46,7 @@ Cтруктура входного json файла:
 
 ```
 
-где <data_frame>
+where <data_frame>
 
 ```json
 {
@@ -55,7 +55,7 @@ Cтруктура входного json файла:
 }
 ```
 
-Пример фрейма данных, определяющий сферу применения оптимизации:
+An example of data frame defining the scope of the optimization:
 
 ```json
 {
@@ -92,9 +92,9 @@ Cтруктура входного json файла:
 
 ```
 
-Пример json файла с заданием на оптимиазацию.
-Текущая цена за продукт 100, закупочная стоимость 50.
-Добавлено правило PtcChange задающая диапазон оптимальной цены от 300 до 310.
+An example of a json file with an optimization task.
+The current price for the product is 100, the purchase price is 50.
+Added a PtcChange rule that sets the optimal price range from 300 to 310.
 ```json
 {
     "items": {
@@ -121,52 +121,50 @@ Cтруктура входного json файла:
 }
 ```
 
-Ожидаемый результат оптимизации: любое число в диапазоне [300..310].
+Expected optimization result: any number in the range [300..310].
 
 
-<h2>Описание правил</h2>
+<h2>Rules description</h2>
 
-Все правила включают в себе общую часть ```<header>``` и основную часть правила.
+All rules include a common part ```<header>``` and the main part of the rule.
 
-
-Описание общей части всех правил - ```<header>```
+Description of the common part of all rules - ```<header>```
 
 ```json
-// идентификатор правила
+// rule ID
 "id": <string>,
 
-// имя правила
+// rule name
 "name": <string>,
 
-// текстовое описание правила
+// text description of the rule
 "text": <string>,
 
-// номер правила по порядку
+// Rule number by order
 "number": <int>,
 
-// вес правила. Обычно равен 1.0
+// rule weight. By default 1.0
 "weight": <float64>,
 
-// строгость правила. Рекомендованная цена никогда не должна нарушать это правило.
-// При конфликте строгих правил приоритет отдается правилу с минимальным номером номер правила по порядку.
+// Strict rules. The recommended price should never violate this rule.
+// When strict rules conflict, priority is given to the rule with the lowest rule number in order.
 "strict": bool
 
-// фильтр сферы применения правила. Оставляет только те элементы в items, которые удовлетворяют фильтру
+// rule scope filter. Leaves only those elements in items that match the filter
 "filter": Vec <Dict <String, Vec<Value>>>,
 
-// обратный фильтр сферы применения правила. Оставляет только те элементы в items, которые не удовлетворяют фильтру
+// inverse filter for the scope of the rule. Leaves only those elements in items that do not match the filter
 "filter_not": Vec <Dict<String, Vec<Value>>>,
 
-// группировщик сферы применения правила. Сгруппированные элементы трактуются как один виртуальный элемент. 
-// См. правило SamePrice
+// rule scope grouper. Grouped elements are treated as one virtual element. 
+// See the rule SamePrice
 "grouper": Vec <String>
 
 
 ```
 
-<h2>Правило SamePrice</h2>
-Все товары, определенные в сфере применения правила должны получить в рекомендации одинаковую цену.
-
+<h2>Rule SamePrice</h2>
+All items defined in the scope of the rule must receive the same price in the recommendation.
 ```json
 {
        <header>,
@@ -174,14 +172,14 @@ Cтруктура входного json файла:
 }
 ```
 
-Пример - "ценовая линейка"
+Example - "price line"
 
 ```json
 {
   "type": "same_price",
   "id": "evmiygn3zzt",
-  "name": "Ценовая линейка",
-  "text": "Все товары в пределах ценовой линейки должны иметь одну цену",
+  "name": "price line",
+  "text": "All products within a price range must have the same price",
   "number": 0,
   "weight": 1.0,
   "grouper": [
@@ -195,43 +193,43 @@ Cтруктура входного json файла:
 ```   
 
 <h2>Правило PctChange</h2>
-Рекомендованная цена товара должна быть в установленных пределах пределах min/max относительно заданной цены. Границы min и мах задаются в процентах.
+The recommended price of the goods must be within the established min / max bound limits relative to the given price. The limits of min and max are set as a percentage.
 
 ```json
 {
   <header>,
   type:"pct_change",
   
-  // атрибут, содержащий цену, относительно которой определяются границы
+  // an attribute containing the price against which the bounds are determined
   reference_price: String,
   
-  // нижняя граница в процентах относительно заданной цены.
-  // расчитывается как reference_price * min
+  // the min limit as a percentage relative to the given price.
+  // calculated as reference_price * min
   min: Option<f64>,
   
-  // верхняя граница в процентах относительно заданной цены
-  // расчитывается как reference_price * max
+  // the max limit as a percentage relative to the given price.
+  // calculated as reference_price * max
   max: Option<f64>,
   
-  // целевая цена процентах относительно заданной цены
-  // расчитывается как reference_price * target
-  // при прочих равных, рекомендация будет притягиваться к целевой цене 
+  // target price as a percentage of the target price
+  // calculated as reference_price * target
+  // generally, the recommendation will be attracted to the target price
   target: Option<f64>
 }
 ```
 
-Пример - “Минимальный порог наценки”
+Пример - “Minimum markup threshold”
 ```json
 {
       "type": "pct_change",
       "id": "82ow0ciyo03",
-      "name": "Мин. порог наценки Маркет",
-      "text": "Наценка на товар должна быть в пределах от {min} до {max}",
+      "name": "Min. change market",
+      "text": "The markup on the product must be between {min} and {max}",
       "grouper": [],
       "filter": [
         {
           "location": [
-            "МОСКВА"
+            "HElSINKI"
           ]
         }
       ],
@@ -244,33 +242,33 @@ Cтруктура входного json файла:
     },
 ```
 
-<h2>Правило AbsChange</h2>
-Рекомендованная цена товара должна быть в установленных пределах пределах min/max. Min - нижняя граница цены, Max - верхняя граница цены.
+<h2>Rule AbsChange</h2>
+The recommended price of the goods must be within the established min / max limits. Min - lower price bound limit, Max - upper price bound limit.
 
 ```json
 {
   <header>,
   type:"abs_change",
   
-  // нижняя граница
+  // min price bound
   min: Option<f64>,
   
-  // верхняя граница
+  // max price bound
   max: Option<f64>,
   
-  // целевая цена 
-  // при прочих равных, рекомендация будет притягиваться к целевой цене 
+  // target price
+  // generally, the recommendation will be attracted to the target price 
   target: Option<f64>
 }
 ```
 
-Пример - “Допустимое изменение цены”
+Пример - “Acceptable Change Rule”
 ```json
 {
       "type": "abs_change",
       "id": "82ow0ciyo03",
-      "name": "Допустимое изменение цены",
-      "text": "Рекомендованная цена должна быть в пределах 100р до 200р",
+      "name": "Permissible price change",
+      "text": "The recommended price should be within 100r to 200r",
       "grouper": [],
       "filter": []
       ],
@@ -282,7 +280,7 @@ Cтруктура входного json файла:
     },
 ```
 <h2>Правило InitialPrice</h2>
-Определеят цену, к которой будет стремиться оптимизация, при условии ненарушения всех остальных правил.
+Determine the price to which optimization will strive, provided that all other rules are not violated.
 
 ```json
 {
@@ -290,13 +288,13 @@ Cтруктура входного json файла:
   
   type: "initial_price",
 
-  // имя атрибута, содержащего ожидаемую цену
-  // по-умолчанию reference_price: "current_price"
+  // the name of the attribute containing the expected price
+  // by default reference_price: "current_price"
   reference_price: Option<String>
 }
 ```
 
-Пример - “Не измениять текущую цену, если она не нарушает никакие правила”
+Example - “Do not change the current price if it does not violate any rules”
 ```json
 {
   "type": "initial_price",
@@ -315,87 +313,87 @@ Cтруктура входного json файла:
 ```
 
 <h2>Правило Relations</h2>
-Правило максимального/минимального отклонения цен между группами товаров.
+Rule of maximum/minimum price deviation between product groups.
 
 ```json
 {
   <header>,
   type: "relations",
 
-  // атрибут, определяющий группы товаров для которых работает правило
+  // an attribute that defines product groups for which the rule works
   selector: String,
 
-  // атрибут, содержащий информацию об относительном размере товара
+  // an attribute containing information about the relative size of the product
   volume_selector: Option<String>,
   
-  // порядком зависимостей
+  // dependency order
   order: Vec<String>,
   
-  // минимальное отклонение
+  // minimum deviation
   min: Option<f64>,
   
-  // максимальное  отклонение
+  // maximum deviation
   max: Option<f64>,
   
-  // Работа с якорным товаром
-  // Якорный товар - это товар, для которого оптимизация не меняет изначальную цену. Внутри правила якорный товар может быть только один.
-  // Цены на остальные товары, должны выстраиваться относительно якорного товара с учетом минимального/максимального отклонений.
+  // Working with an anchor product
+  // An anchor product is a product for which optimization does not change the original price. There can be only one anchor product inside a rule.
+  // Prices for other products should be aligned relative to the anchor product, taking into account the minimum / maximum deviations.
   
 
-  // Автоматическое определение якорного товара
-  // Только один из флагов автоматического определения якорной цены может быть включен: firstIsAnchor или lastIsAnchor или minEquivIsAnchor.
+  // Automatic detection of the anchor product
+  // Only one of the automatic anchor price flags can be enabled: firstIsAnchor or lastIsAnchor or minEquivIsAnchor.
   
-  // Первый товар с ненулевым значением атрибута anchor_selector является якорным.
-  // Товары отсортированы согласно порядку зависимостей order.
+  // The first product with a non-zero value for the anchor_selector attribute is an anchor product.
+  // Items are sorted according to dependency order .
   firstIsAnchor: Option<bool>,
 
-  // Последний товар с ненулевым значением атрибута anchor_selector является якорным.
-  // Товары отсортированы согласно порядку зависимостей order. 
+  // The last product with a non-zero value for the anchor_selector attribute is an anchor product.
+  // Items are sorted according to dependency order .
   lastIsAnchor: Option<bool>,
   
-  // Товар с минимальным значением относительной эквивалентной ценой является якорным.
+  // The product with the minimum value of the relative equivalent price is anchor.
   minEquivIsAnchor: Option<bool>,
   
-  // Атрибут, определяющий кандидатов, для автоматического выбора якорного товара
+  // Attribute for automatic selection of anchor product
   anchor_selector: Option<String>,
 
-  // Атрибут, содержащий информацию об относительном размер товара.
-  // Используется для определения якорного товара с минимальной относительной эквивалентной ценой. 
-  // Относительная эквивалентная цена = items[anchor_selector] / items[minEquiv_selector]
+  // Attribute containing information about the relative size of the product.
+  // Used to define an anchor product with a minimum relative equivalent price.
+  // Relative equivalent price = items[anchor_selector] / items[minEquiv_selector]
   minEquiv_selector: Option<String>
 }
 ```
 
-Пример - "Правило брендов"
+Example - "Brand Rule"
 
 ```json
 {
   "type": "relations",
   "id": "yya5weffwe",
-  "name": "Правило брендов",
-  "text": "В рамках ценовых зон отклонение цены бренда Б должно быть в пределах от -20% до 20% относительно бренда А"
+  "name": "Brand Rule",
+  "text": "Within the price zones, the price deviation of brand B should be between -20% and 20% relative to brand A"
   "min": 0.8,
   "max": 1.2,
   "type": "relations",
   "selector": "item.Brend".
-  "order": ["Бренд А","Бренд Б"],
+  "order": ["Brand А","Brand B"],
   "grouper": ["brand_group", "price_zone"]
 }
 
 ```
 
-Пример - "Кросс-зонное правило с якорной ценой"
+Example - "Cross Zone Rule with Anchor Price"
 ```json
 {
   "type": "relations",
   "id": "yya53cmfrm",
-  "name": "Кросс-зонное правило Московская область",
-  "text": "Отклонение цены в ценовой зоне Московская область должно быть в пределах от -10% до 0% относительно цены в ценовой зоны Москва. Приоритет отдаётся ценовой зоне Москва",
+  "name": "Cross-zone rule Helsinki region",
+  "text": "The deviation of the price in the price zone of the Helsinki region should be in the range from -10% to 0% relative to the price in the price zone of Helsinki. Priority is given to the Helsinki price zone",
   "grouper": ["item"],
   "selector": "price_zone",
   "order": [
-    "Москва",
-    "Московская область"
+    "Helsinki",
+    "Vantaa Region"
   ],
   "min": 0.9,
   "max": 1.0,
@@ -403,8 +401,8 @@ Cтруктура входного json файла:
 }
 ```
 
-<h2>Правило FixedPrice</h2>
-Рекомендация должна вернуть фиксированную цену
+<h2>Rule FixedPrice</h2>
+Recommendation should return a fixed price
 
 ```json
 {
@@ -412,25 +410,25 @@ Cтруктура входного json файла:
   
   type: "fixed_price",
 
-  // имя атрибута, определяющего группы товаров для которых работает правило
-  // значение значение аттрибута должно быть True т.е. items[selector] == True
+  // the name of the attribute that defines the product groups for which the rule works
+  // value attribute value must be True e.g. items[selector] == True
   selector: String,
   
-  // имя атрибута, содержащего значение зафиксированной цены 
+  // the name of the attribute containing the value of the fixed price
   reference_price: String,
 }
 ```
 
-Пример - "Правило новой цены"
+Example - "New Price Rule"
 
-Для товаров, с заданной новой ценой (new_prices.price != 0), оптимизатор возвращает эту же цену (new_prices.price).
+For products with a new price (new_prices.price != 0), the optimizer returns the same price (new_prices.price).
 
 ```json
 {
   "type": "fixed_price",
   "id": "97amm9qe0y9",
-  "name": "Правило новой цены",
-  "text": "Не менять цену если введена новая цена",
+  "name": "New Price Rule",
+  "text": "Do not change the price if a new price is entered",
   "number": 11,
   "weight": 1.0,
   "grouper": [],
@@ -441,8 +439,8 @@ Cтруктура входного json файла:
 }
 ```
 
-<h2>Правило MinPriceChange</h2>
-Оптимизатор не возвращает рекомендацию для товаров у которых, расчетная оптимальная цена получается в диапазоне [reference_price * min, reference_price * max]. Правило применяется, если reference_price находиться в диапазоне (range_start, range_end].
+<h2>Rule MinPriceChange</h2>
+The optimizer does not return a recommendation for products whose calculated optimal price is in the range [reference_price * min, reference_price * max]. The rule is applied if reference_price is in the range (range_start, range_end].
 
 
 ```json
@@ -451,34 +449,34 @@ Cтруктура входного json файла:
   
   type: "min_price_change",
   
-  // нижняя граница в процентах относительно заданной цены.
-  // расчитывается как reference_price * min
+  // the lower min price limit bound as a percentage relative to the given price.
+  // calculated as reference_price * min
   min: Option<f64>,
   
-  // верхняя граница в процентах относительно заданной цены.
-  // расчитывается как reference_price * max
+  // the upper max price limit bound as a percentage relative to the given price.
+  // calculated as reference_price * max
   max: Option<f64>,
   
-  // цена, относительно которой определяются границы
+  // price against which boundaries are determined
   reference_price: String,
   
-  // нижняя границы применимости правила, относительно reference_price
+  // lower min price limit bound of rule applicability, relative to reference_price
   range_start: Option<f64>,
   
-  // нижняя границы применимости правила, относительно reference_price
+  // upper max price limit bound of rule applicability, relative to reference_price
   range_end: Option<f64>
 }
 ```
 
 
-Пример - "Минимальное изменение цены"
+Example - "Minimum price change"
 
 ```json
 {
     "type": "min_price_change",
     "id": "x6vnwrq9ck",
-    "name": "Минимальное изменение цены",
-    "text": "Не менять цену если изменение цены в передeлах от {min} до {max} для цен в диапазоне от {range_start} до {range_end}.\n",
+    "name": "Minimum price change",
+    "text": "Do not change the price if the price change is between {min} and {max} for prices between {range_start} and {range_end}.\n",
     "number": 13,
     "weight": 1.0,
     "grouper": [],
@@ -492,9 +490,9 @@ Cтруктура входного json файла:
   }
 ```
 
-<h2>Правило RoundingRange</h2>
+<h2>Rule RoundingRange</h2>
 
-Правило округления. Для цены товара в диапазоне от start до end целая часть цены должна оканчиваться на wholeEndings, исключая цены ignorePrices. Дробная часть цены должна оканчиваться на fractionalEndings. Возможны различны методы округления: к ближейшему, округление вниз и округление вверх.
+Rounding rule. For a product price between start and end, the integer part of the price must end in wholeEndings, excluding the ignorePrices prices. The fractional part of the price must end with fractionalEndings. There are various methods of rounding: to the nearest, rounding down and rounding up.
 
 ```json
 {
@@ -502,34 +500,34 @@ Cтруктура входного json файла:
   
   type: "rounding",
 
-  // нижняя граница диапазона применимости правила 
+  // lower limit of the range of applicability of the rule 
   start: f64,
   
-  // верхняя граница диапазона применимости правила 
+  //  upper limit of the range of applicability of the rule 
   end: f64,
   
-  // допустимые окончания целой части
+  // valid integer endings
   whole_endings: Vec<String>,
   
-  // допустимые окнчания дробной части
+  // valid fractional endings
   fractional_endings: Vec<String>,
   
-  // цены, которые должны быть исключены
+  // prices to be excluded
   ignore_prices: Vec<String>,
   
-  // определяет в какую сторону делать округление: "nearest" или "floor" или "ceil". 
-  // значение по-умолчанию "nearest"
+  // determines in which direction to round: "nearest" or "floor" or "ceil". 
+  // default value - "nearest"
   rounding_method: Option<String>
 }
 ```
-Пример - "Минимальное изменение цены"
+Example - "Minimum price change"
 
 ```json
 {
   "type": "rounding",
   "id": "hyynsox86z9",
-  "name": "Округление цен",
-  "text": "Для цены товара в диапазоне от 0.0 до 100.0 целая часть цены должна оканчиваться на 01,03,05,99 исключая цены 33,34. Дробная часть цены должна оканчиваться на 00.",
+  "name": "Rounding prices",
+  "text": "For the price of a product in the range from 0.0 to 100.0, the integer part of the price must end in 01.03.05.99, excluding prices 33.34. The fractional part of the price must end in 00.",
   "rounding_ranges": [
     {
       "start": 0.0,
@@ -552,8 +550,8 @@ Cтруктура входного json файла:
 }
 ```
 
-<h2>Правило BalancedOptimization</h2>
-Оптимизация с указанием цели оптимизации в рамках допустимого отклонения от текущей цены и одновременном ненарушении других правил.
+<h2>Rule BalancedOptimization</h2>
+Optimization with an indication of the optimization goal within the allowable deviation from the current price and at the same time not violating other rules.
 
 ```json
 {
@@ -561,27 +559,28 @@ Cтруктура входного json файла:
   
   type: "balanced_optimization",
 
-  // цель оптимизации: "margin" или "revenue" или "demand" или "adjusted_margin"
+  // Optmization goal: "margin" or "revenue" or "demand" or "adjusted_margin"
   goal: Option<String>,
   
-  // нижняя граница допустимого отклонения от текущей цены
-  // расчитывается как current_price * min
+  // lower limit of acceptable deviation from the current price
+  // calculated as current_price * min
   min: Option<f64>,
 
-  // верхняя граница допустимого отклонения от текущей цены
-  // расчитывается как current_price * max
+  // upper limit of acceptable deviation from the current price
+  // calculated as current_price * max
   max: Option<f64>
 }
 ```
 
-Пример - "Максимизировать продажи шт."
+
+Example - "Maximize unit sales."
 
 ```json
 {
   "type": "balanced_optimization",
   "id": "24x2ijc3kx",
-  "name": "Оптимизация в рамках ценовых правил",
-  "text": "Максимизировать продажи в штуках. Изменение цены должно быть в пределах от -10% до +10% относительно текущей цены.",
+  "name": "Optimization within price rules",
+  "text": "Maximize unit sales. The price change must be between -10% and +10% relative to the current price.",
   "goal": "demand",
   "min": 0.9,
   "max": 1.1
@@ -589,51 +588,51 @@ Cтруктура входного json файла:
 ```
 
 
-<h1>Результат оптимизации</h1>
+<h1>Optimization run results</h1>
 
-Результат оптимизации оформляется в виде csv файла, содержащий следующую структуру:
- - колонки - атрибут  
- - строки - продукт
+The optimization result is formatted as a csv file containing the following structure:
+ - columns - attribute
+ - strings - product
 
-Порядок колонок не важен.
+The order of the columns is not important.
 
-колонки:
+columns:
  - pl_index
-   - обязательная колонка, содержит индекс продукта
+   - mandatory column, contains the product index
  - currentPrice
-   - обязательная колонка, текущая цена продукта
+   - mandatory column, current product price
  - optimalPrice
-   - обязательная колонка, оптимальная цена, полученная с применением всем правил из секции rules
+   - mandatory column, the optimal price obtained by applying all the rules from the rules section
  - finalPrice
-   - обязательная колонка, окончательная цена. Получается применением строгих правил и раундинга к optimalPrice. См. секцию правил postRules.
+   - mandatory column, final price. It is obtained by applying strict rules and rounding to optimalPrice. See the rules section postRules.
  - modifiedCurrentPrice
-   - опциональная колонка, содержит текущую цену, модифицированная правилом SamePirce. Например, товары в линейке содержат разные currentPrice цены и присутствует правило одинаковых цен в линейке. До старта оптимизации цены currentPrice для линейки выравноваются, новая выровненная цена записывается в modifiedCurrentPrice.
+   - optional column, contains the current price modified by the SamePirce rule. For example, products in the line contain different currentPrice prices and there is a rule of the same prices in the line. Before the start of optimization, the currentPrice prices for the line are aligned, the new aligned price is written to modifiedCurrentPrice
  
- Для кажного правила добавляются колонки, где:
->> {id} - идентификатор правила
-{price_type} - тип цены currentPrice, currentPrice, optimalPrice.
+ For each rule, columns are added where:
+>> {id} - rule ID
+{price_type} - price type: currentPrice, currentPrice, optimalPrice.
 
-Колонки для базовых правил:
- - "{id}|{price_type}|error" - нарушение правила в рублях
- - "{id}|{price_type}|status" - было ли правило использовано. 1.0 - было использовано, 0.0 - небыло использовано
- - "{id}|{price_type}|leftBound" - левая граница правила в рублях
- - "{id}|{price_type}|rightBound" - правая граница правила в рублях
- - "{id}|{price_type}|target" - целевая цена. См. правило PctChange
+Columns for base rules:
+ - "{id}|{price_type}|error" - violation of the rules in currency
+ - "{id}|{price_type}|status" - whether the rule was used. 1.0 - was used, 0.0 - was not used
+ - "{id}|{price_type}|leftBound" - left border of the rule
+ - "{id}|{price_type}|rightBound" - right border of the rule
+ - "{id}|{price_type}|target" - target price, see rule PctChange
  
-Колонки для BalancedOptimization правил:
- - "{id}|{price_type}|demandMetric" - спрос в штуках для конкретного правила
-  - "{id}|{price_type}|revenueMetric" - выручка в рублях для конкретного правила
-  - "{id}|{price_type}|marginMetric" - доход в рублях для конкретного правила 
+Columns for BalancedOptimization rule:
+ - "{id}|{price_type}|demandMetric" - demand (in pieces) for a specific rule
+  - "{id}|{price_type}|revenueMetric" - revenue (currency) for a specific rule
+  - "{id}|{price_type}|marginMetric" - income (currency) for a specific rule 
 
- - "demandMetric" - спрос в штуках для всей оптимизации
- - "revenueMetric" - выручка в рублях для всей оптимизации
- - "marginMetric" - доход в рублях для всей оптимизации
+ - "demandMetric" - demand (in pieces) for whole optimization
+ - "revenueMetric" - revenue (currency) for whole optimization
+ - "marginMetric" - income 8currency) for whole optimization
 
-Те для каждого правила будут записаны метрики для каждой из цен: currentPrice, currentPrice, optimalPrice
+For each rule, metrics for each of the prices will be recorded: currentPrice, currentPrice, optimalPrice
 
-Пример
+Example
 
-Входные данные на оптимиазацию:
+Input data for optimization:
 
 ```json
 {
@@ -659,7 +658,7 @@ Cтруктура входного json файла:
 }
 ```
 
-Результат оптимизации
+Optimization result
 ```csv
 pl_index,currentPrice,optimalPrice,newPrice,pct_change|currentPrice|error,pct_change|currentPrice|status,pct_change|currentPrice|leftBound,pct_change|currentPrice|rightBound,pct_change|currentPrice|target,current_price,finalPrice,pct_change|optimalPrice|error,pct_change|optimalPrice|status,pct_change|optimalPrice|leftBound,pct_change|optimalPrice|rightBound,pct_change|optimalPrice|target,pct_change|finalPrice|error,pct_change|finalPrice|status,pct_change|finalPrice|leftBound,pct_change|finalPrice|rightBound,pct_change|finalPrice|target,item
 0,1.00,1.20,,0.10,1.00,1.10,1.30,0.00,1.00,1.20,0.00,1.00,1.10,1.30,0.00,0.00,1.00,1.10,1.30,0.00,p1
