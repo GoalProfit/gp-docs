@@ -328,8 +328,24 @@ Cтруктура входного json файла:
   // атрибут, содержащий информацию об относительном размере товара
   volume_selector: Option<String>,
   
-  // порядком зависимостей
-  order: Vec<String>,
+  // порядок зависимостей. Содержит список значений аттрибута selector
+  // Может быть не задан, тогда порядок зависимостей вычисляется автоматически как отсортированные значения аттрибута selector.
+  // Сортировака опредлеяется параметром auto_order_ascending. Близкие численные значения аттрибута selector объединяются с 
+  // использованием функции math.isclose. Параметры объединения задаются auto_order_rel_tol и auto_order_abs_tol.
+  
+  order: Option<Vec<String>>, 
+  
+  // порядок сортировки при автоматическом опредлелении order. 
+  // По-умолчанию auto_order_ascending=True
+  auto_order_ascending: Option<bool>
+  
+  // параметр функции math.isclose(x,y,rel_tol=auto_order_rel_tol). См. order.
+  // По-умолчанию auto_order_rel_tol=1e-03 
+  auto_order_rel_tol: Option<f64>
+  
+  // параметр функции math.isclose(x,y,abs_tol=auto_order_abs_tol). См. order.
+  // По-умолчанию auto_order_abs_tol=0.0 
+  auto_order_abs_tol: Option<f64>
   
   // минимальное отклонение
   min: Option<f64>,
@@ -363,6 +379,8 @@ Cтруктура входного json файла:
   // Используется для определения якорного товара с минимальной относительной эквивалентной ценой. 
   // Относительная эквивалентная цена = items[anchor_selector] / items[minEquiv_selector]
   minEquiv_selector: Option<String>
+  
+  
 }
 ```
 
