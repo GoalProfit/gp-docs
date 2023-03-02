@@ -39,6 +39,10 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
      LocalForward 16449 127.0.0.1:16443
      ```
 * ssh [customer]
+  * setup max map file count
+    * open file `/etc/sysctl.conf`
+    * append line: `vm.max_map_count=1000000`
+    * apply changes: `sudo sysctl -p`
   * copy ZFS scripts to ~/zfs/
   * setup ZFS
   * setup [instance] -> [backup server] authentication
