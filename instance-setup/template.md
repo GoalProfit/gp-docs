@@ -44,7 +44,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
     * append line: `vm.max_map_count=1000000`
     * apply changes: `sudo sysctl -p`
   * copy ZFS scripts to ~/zfs/
-  * setup ZFS
+  * [setup ZFS](../zfs)
   * setup [instance] -> [backup server] authentication
     * sudo su
     * ssh-keygen

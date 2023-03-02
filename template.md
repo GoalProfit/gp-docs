@@ -2,7 +2,7 @@
 
 GoalPlatform is the platform for the rapid development of reliable business applications.
 
-## Glossary
+## GoalProfit Analytical Platform
 
 * [Fundamental principles](principles/)
 * [System component](components/)
@@ -21,12 +21,20 @@ GoalPlatform is the platform for the rapid development of reliable business appl
 * [Dataset reports](admin/dataset/reports/)
   * [Report config](admin/report/config/)
 * [Dataset users](admin/dataset/users/)    
+
+## GoalProfit Applications
 * Application settings
   * [Attribute](admin/attribute/config/)
   * [Metric](admin/metric/config/)
   * [Timeframe](admin/timeframe/config/)
   * [Format](admin/format/config/)
   * [Formula](admin/formula/config/)
+* [Documentation, Guides & Resources](../gp-internal-docs/)
+  * [Getting Started](../gp-internal-docs/user_guide/)
+  * [Admin Guide](../gp-internal-docs/admin_guide/)
+  * [User Guide: Price Optimization](../gp-internal-docs/price_rules/)
+  * [User Guide: Markdown Optimization](../gp-internal-docs/markdown/)
+  * [User Guide: PIM AI](../gp-internal-docs/pim)
 
 <style>
 h1 img {
@@ -34,5 +42,10 @@ h1 img {
   height: 22px;
   margin-top: -3px;
   margin-left: -16px;
+}
+ul {
+  line-height: 1.;
+ padding-top: 9px;
+}
 }
 </style>
