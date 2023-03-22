@@ -43,6 +43,14 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
     * open file `/etc/sysctl.conf`
     * append line: `vm.max_map_count=1000000`
     * apply changes: `sudo sysctl -p`
+  * setup max number of opened files
+    * open file `/etc/security/limits.conf`
+    * append line: `* soft nofile 524288`
+    * append line: `* hard nofile 524288`
+    * open file `/etc/pam.d/common-session`
+    * append line `session required pam_limits.so`
+    * apply changes: `sudo sysctl -p --system` or relogin
+    * check result with ulimit -n
   * copy ZFS scripts to ~/zfs/
   * [setup ZFS](../zfs)
   * setup [instance] -> [backup server] authentication
