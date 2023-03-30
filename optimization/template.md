@@ -251,13 +251,15 @@ The recommended price of the goods must be within the established min / max limi
   type:"abs_change",
   
   // min price bound
-  min: Option<f64>,
+  // calculated as reference_price + min_abs
+  min_abs: Option<f64>,
   
   // max price bound
-  max: Option<f64>,
+  // calculated as reference_price + max_abs
+  max_abs: Option<f64>,
   
-  // target price
-  // generally, the recommendation will be attracted to the target price 
+  // target price as a percentage of the target price
+  // calculated as reference_price * target
   target: Option<f64>
 }
 ```
