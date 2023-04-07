@@ -94,7 +94,7 @@ An example of data frame defining the scope of the optimization:
 
 An example of a json file with an optimization task.
 The current price for the product is 100, the purchase price is 50.
-Added a PtcChange rule that sets the optimal price range from 300 to 310.
+Added a PctChange rule that sets the optimal price range from 300 to 310.
 ```json
 {
     "items": {
@@ -251,13 +251,15 @@ The recommended price of the goods must be within the established min / max limi
   type:"abs_change",
   
   // min price bound
-  min: Option<f64>,
+  // calculated as reference_price + min_abs
+  min_abs: Option<f64>,
   
   // max price bound
-  max: Option<f64>,
+  // calculated as reference_price + max_abs
+  max_abs: Option<f64>,
   
-  // target price
-  // generally, the recommendation will be attracted to the target price 
+  // target price as a percentage of the target price
+  // calculated as reference_price * target
   target: Option<f64>
 }
 ```
@@ -326,32 +328,23 @@ Rule of maximum/minimum price deviation between product groups.
   // an attribute containing information about the relative size of the product
   volume_selector: Option<String>,
   
-  // порядок зависимостей. Содержит список значений аттрибута selector
-  // Может быть не задан, тогда порядок зависимостей вычисляется автоматически как отсортированные значения аттрибута selector.
-  // Сортировака опредлеяется параметром auto_order_ascending. Близкие численные значения аттрибута selector объединяются с 
-  // использованием функции math.isclose. Параметры объединения задаются auto_order_rel_tol и auto_order_abs_tol.
+  // an attribute containing possible values from 'selector' for relation order.
+  order: <Vec<String>>, 
   
-  order: Option<Vec<String>>, 
+  // Enabling automatic order detection using sorted values from 'selector' attribute. By defualt is false.
+  // In case of auto_order is equalt to true, 'order' setting will be ignored.
+  auto_order: Option<bool>,
   
-  // порядок сортировки при автоматическом опредлелении order. 
-  // По-умолчанию auto_order_ascending=True
-  auto_order_ascending: Option<bool>
-  
-  // параметр функции math.isclose(x,y,rel_tol=auto_order_rel_tol). См. order.
-  // По-умолчанию auto_order_rel_tol=1e-03 
-  auto_order_rel_tol: Option<f64>
-  
-  // параметр функции math.isclose(x,y,abs_tol=auto_order_abs_tol). См. order.
-  // По-умолчанию auto_order_abs_tol=0.0 
-  auto_order_abs_tol: Option<f64>
-  
+  // Sort order when auto_order is true. By defualt auto_order_ascending=True.
+  auto_order_ascending: Option<Bool>,
+    
   // minimum deviation
   min: Option<f64>,
   
   // maximum deviation
   max: Option<f64>,
   
-  // Working with an anchor product
+  // Working with an anchor product.
   // An anchor product is a product for which optimization does not change the original price. There can be only one anchor product inside a rule.
   // Prices for other products should be aligned relative to the anchor product, taking into account the minimum / maximum deviations.
   
@@ -360,11 +353,11 @@ Rule of maximum/minimum price deviation between product groups.
   // Only one of the automatic anchor price flags can be enabled: firstIsAnchor or lastIsAnchor or minEquivIsAnchor.
   
   // The first product with a non-zero value for the anchor_selector attribute is an anchor product.
-  // Items are sorted according to dependency order .
+  // Items are sorted according to dependency order.
   firstIsAnchor: Option<bool>,
 
   // The last product with a non-zero value for the anchor_selector attribute is an anchor product.
-  // Items are sorted according to dependency order .
+  // Items are sorted according to dependency order.
   lastIsAnchor: Option<bool>,
   
   // The product with the minimum value of the relative equivalent price is anchor.
