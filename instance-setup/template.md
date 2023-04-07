@@ -79,17 +79,29 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * fix /etc/nginx/sites-enabled/default
     * remove block like this:
     ```
-      listen 443 ssl; # managed by Certbot
-      ssl_certificate /etc/letsencrypt/live/kesko.goalprofit.com/fullchain.pem; # managed by Certbot
-      ssl_certificate_key /etc/letsencrypt/live/kesko.goalprofit.com/privkey.pem; # managed by Certbot
-      include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbo
-      ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+      server {
+        server_name [customer].goalprofit.com;
+        location / {
+          try_files /nonexistent @$http_upgrade;
+        }
+        location @ {
+          proxy_pass http://localhost:[customer_port];
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+          proxy_read_timeout 600;
+        }
+        location @websocket {
+          proxy_pass http://localhost:[customer_port];
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "Upgrade";
+          proxy_set_header Host $host;
+          proxy_read_timeout 600;
+        }
+        listen 80;
+      }
     ```
 
-  * replace it by this:
-  ```
-    listen 80;
-  ```
 * append record in DNS https://dash.cloudflare.com
 * issue SSL certificate:
   * sudo certbot --nginx
