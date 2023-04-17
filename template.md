@@ -32,7 +32,7 @@ GoalPlatform is the platform for the rapid development of reliable business appl
 * [Documentation, Guides & Resources](../gp-internal-docs/)
   * [Getting Started](../gp-internal-docs/user_guide/)
   * [Admin Guide](../gp-internal-docs/admin_guide/)
-  * [User Guide: Price Optimization](../gp-internal-docs/price_rules/)
+  * [User Guide: Price Optimization](/price_rules/)
   * [User Guide: Markdown Optimization](../gp-internal-docs/markdown/)
   * [User Guide: PIM AI](../gp-internal-docs/pim)
 
