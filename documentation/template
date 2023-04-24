@@ -1,1 +1,78 @@
+# Documentation
 
+GoalPlatform is the platform for the rapid development of reliable business applications.
+
+
+
+## [Getting Started](user_guide/)
+---
+  * [Main Panel](user_guide/panel/)
+  * [Menu Bar: Dashboard & Map, KVI & Prices, Competitors analysis & Reports](user_guide/menu/)
+  * [Additional pages](user_guide/pages/)
+&nbsp;
+## [Admin Guide](admin_guide/)
+---
+  * [Navigating the basic interface](admin_guide/interface/)
+  * [Understanding Administration panel](admin_guide/admin/)
+    * Config Tab
+    * Streams
+    * Reports
+    * Users
+    * Sources
+    * Solutions
+    * Flow Tab
+  * [Configuring the Administrative panel](admin_guide/config/)
+    * Streams
+    * Reports
+  * [First Time Walktrough](admin_guide/quick_guide/)
+  * [Appendix: Attributes, Metrics, Formulas, Timeframes](admin_guide/parameters/)
+&nbsp;
+## [Price Optimization](price_rules/)
+---
+  * [Price Optimization Process](price_rules/optimization/)
+    * Reports
+    * Strategies
+    * Price rules
+  * [Types of rules](price_rules/rules/)
+    * Same Price Rule
+    * Price Change
+    * Relation Rule
+    * Fixed Price
+    * Minimum Change Rule
+    * Rounding Rule
+  * [Rules Parameters, Settings & Template for Design mode](price_rules/parameters/)
+  * [Price Optimization Results](price_rules/output/)
+
+&nbsp;
+## [Markdown Optimization](markdown/)
+---
+* Initial Setup
+  * About Goalprofit Applications
+  * Logging into GoalProfit
+  * [Markdown Navigation Bar](markdown/navigation/)
+    * Report
+    * Strategy
+    * Analysis
+* Markdown Science & Modeling
+  * [Basic Markdown Optimization Process](markdown/process/)
+    * Setup 
+    * Create Markdown Report & Strategies
+      * [Report](markdown/process/report) 
+      * [Strategy](markdown/process/strategy) 
+    * Optimize and review results
+    * Implement & mass aprove prices
+
+
+<style>
+h1 img {
+  display: inline-block;
+  height: 22px;
+  margin-top: -3px;
+  margin-left: -16px;
+}
+ul {
+  line-height: 1.;
+ padding-top: 9px;
+}
+}
+</style>

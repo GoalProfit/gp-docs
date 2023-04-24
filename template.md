@@ -29,12 +29,12 @@ GoalPlatform is the platform for the rapid development of reliable business appl
   * [Timeframe](admin/timeframe/config/)
   * [Format](admin/format/config/)
   * [Formula](admin/formula/config/)
-* [Documentation, Guides & Resources](../gp-internal-docs/)
-  * [Getting Started](../gp-internal-docs/user_guide/)
-  * [Admin Guide](../gp-internal-docs/admin_guide/)
-  * [User Guide: Price Optimization](/price_rules/)
-  * [User Guide: Markdown Optimization](../gp-internal-docs/markdown/)
-  * [User Guide: PIM AI](../gp-internal-docs/pim)
+* [Documentation, Guides & Resources](documentation/)
+  * [Getting Started](documentation/user_guide/)
+  * [Admin Guide](documentation/admin_guide/)
+  * [User Guide: Price Optimization](documentation/price_rules/)
+  * [User Guide: Markdown Optimization](documentation/markdown/)
+  * [User Guide: PIM AI](documentation/pim)
 
 <style>
 h1 img {
