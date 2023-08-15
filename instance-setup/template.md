@@ -61,7 +61,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * sudo usermod -a -G microk8s ubuntu
   * sudo chown -f -R ubuntu ~/.kube
   * newgrp microk8s
-  * microk8s enable dns dashboard
+  * microk8s enable dns dashboard hostpath-storage
   * microk8s kubectl create ns [customer]
   * microk8s kubectl create secret docker-registry regcred -n [customer] --docker-server=https://index.docker.io/v1/  --docker-username=osidorkin --docker-password=[password]
   * setup max number of opened files for microk8s pods
@@ -112,6 +112,10 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
 * issue SSL certificate:
   * sudo certbot --nginx
   * enter email
+* install node-exporter:
+    * `microk8s helm3 repo add prometheus-community https://prometheus-community.github.io/helm-charts`
+    * `microk8s helm3 repo update`
+    * `microk8s helm3 install node-exporter prometheus-community/prometheus-node-exporter`
 * install helm chart
 
 
