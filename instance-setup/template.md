@@ -69,7 +69,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * restart microk8s
     * `microk8s stop`
     * `microk8s start`
-  * sudo apt install nginx
+  * sudo apt install -y nginx apache2-utils
   * sudo systemctl start nginx
   * sudo snap install --classic certbot
   * sudo ln -s /snap/bin/certbot /usr/bin/certbot
