@@ -50,10 +50,10 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
     * open file `/etc/pam.d/common-session`
     * append line `session required pam_limits.so`
     * apply changes: `sudo sysctl -p --system` or relogin
-    * check result with ulimit -n
+    * check result with `ulimit -n`
   * copy ZFS scripts to ~/zfs/
   * [setup ZFS](../zfs) (if zfs step skipped we have to create folder /data/[customer_id] manualy)
-  * setup [instance] -> [backup server] authentication
+  * setup [instance] -> [backup server] authentication (optionaly)
     * sudo su
     * ssh-keygen
     * copy id_rsa.pub to [backup server]
@@ -76,29 +76,29 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * fix /etc/nginx/sites-enabled/default
     * remove block like this (customer_port should be the same as in option proxy.port in helm chart ):
     ```
-      server {
-        server_name [customer].goalprofit.com;
-        location / {
-          try_files /nonexistent @$http_upgrade;
-        }
-        location @ {
-          proxy_pass http://localhost:[customer_port];
-          proxy_http_version 1.1;
-          proxy_set_header Host $host;
-          proxy_read_timeout 600;
-        }
-        location @websocket {
-          proxy_pass http://localhost:[customer_port];
-          proxy_http_version 1.1;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-          proxy_set_header Host $host;
-          proxy_read_timeout 600;
-        }
-        listen 80;
-      }
+server {
+  server_name [customer].goalprofit.com;
+  location / {
+    try_files /nonexistent @$http_upgrade;
+  }
+  location @ {
+    proxy_pass http://localhost:[customer_port];
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_read_timeout 600;
+  }
+  location @websocket {
+    proxy_pass http://localhost:[customer_port];
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "Upgrade";
+    proxy_set_header Host $host;
+    proxy_read_timeout 600;
+  }
+  listen 80;
+}
     ```
-  * sudo nginx -s reload
+  * `sudo nginx -s reload`
 
 * append record in DNS. For example on https://dash.cloudflare.com
 * issue SSL certificate:
@@ -107,16 +107,16 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
 * register instance in miracl (https://miracl.com/) and store [miracl_client_id] and [miracl_client_secret]
 * create secrets:
   * secret for pulling from docker hub
-    `microk8s kubectl --namespace mckesson-sandbox create secret docker-registry regcred --docker-server=https://index.docker.io/v1/  --docker-username=dockerhub_user --docker-password=dockerhub_password`
+    `microk8s kubectl --namespace [customer_id] create secret docker-registry regcred --docker-server=https://index.docker.io/v1/  --docker-username=dockerhub_user --docker-password=dockerhub_password`
   * secret for service principal with admin privelegies:
-    `microk8s kubectl --namespace mckesson-sandbox create secret generic secret-admin --from-literal=username=admin --from-literal=password=[admin_password]`
+    `microk8s kubectl --namespace [customer_id] create secret generic secret-admin --from-literal=username=admin --from-literal=password=[admin_password]`
   * secret for service principal without admin privelegies:
-    `microk8s kubectl --namespace mckesson-sandbox create secret generic secret-service --from-literal=username=user --from-literal=password=[user_password]`
+    `microk8s kubectl --namespace [customer_id] create secret generic secret-service --from-literal=username=user --from-literal=password=[user_password]`
   * secret for miracl
-    `microk8s kubectl --namespace mckesson-sandbox create secret generic miracl-client --from-literal=id=[miracl_client_id] --from-literal=secret=[miracl_client_secret`
+    `microk8s kubectl --namespace [customer_id] create secret generic miracl-client --from-literal=id=[miracl_client_id] --from-literal=secret=[miracl_client_secret`
   * secret for session cookie:
     * create base64 string:
-      `microk8s kubectl --namespace mckesson-sandbox create secret generic cookie-session --from-literal=key=$(echo [random string]|base64)`
+      `microk8s kubectl --namespace [customer_id] create secret generic cookie-session --from-literal=key=$(echo [random string]|base64)`
   * create corresponing users in .htpasswd
       `cd /data/[customer_id]/data`
       `htpasswd -bB admin [admin_password]`
