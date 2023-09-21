@@ -1,7 +1,7 @@
 # 1. Create VM
 
 console.cloud.google.com > Compute Engine > VM Instances > Create Instance
-* name=[customer name]
+* name=[customer_id]
 * region=[customer region]
 * Series=N2
 * Machine type=n2-standard-8
@@ -14,7 +14,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
 * Allow HTTP traffic=On
 * Allow HTTPS traffic=On
 * Advanced Options > Disks > Add New Disk
-  * Name=[customer]-data
+  * Name=[customer_id]-data
   * Disk Source Type=Blank Disk
   * Disk Type=Balanced Persistent Disk
   * Size=100GB
@@ -33,12 +33,12 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
 * Copy public IP
 * Create block in ~/.ssh/config like this:
     ```
-   Host [customer]
+   Host [customer_id]
      User ubuntu
      HostName 34.154.17.64
      LocalForward 16449 127.0.0.1:16443
      ```
-* ssh [customer]
+* ssh [customer_id]
   * setup max map file count
     * open file `/etc/sysctl.conf`
     * append line: `vm.max_map_count=1000000`
@@ -52,7 +52,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
     * apply changes: `sudo sysctl -p --system` or relogin
     * check result with ulimit -n
   * copy ZFS scripts to ~/zfs/
-  * [setup ZFS](../zfs)
+  * [setup ZFS](../zfs) (if zfs step skipped we have to create folder /data/[customer_id] manualy)
   * setup [instance] -> [backup server] authentication
     * sudo su
     * ssh-keygen
@@ -62,8 +62,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * sudo chown -f -R ubuntu ~/.kube
   * newgrp microk8s
   * microk8s enable dns dashboard hostpath-storage
-  * microk8s kubectl create ns [customer]
-  * microk8s kubectl create secret docker-registry regcred -n [customer] --docker-server=https://index.docker.io/v1/  --docker-username=osidorkin --docker-password=[password]
+  * microk8s kubectl create ns [customer_id]
   * setup max number of opened files for microk8s pods
     * open /var/snap/microk8s/current/args/containerd-env
     * fix line `ulimit -n 65536` to `ulimit -n 524288`
@@ -74,16 +73,8 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * sudo systemctl start nginx
   * sudo snap install --classic certbot
   * sudo ln -s /snap/bin/certbot /usr/bin/certbot
-  * copy instance like this
-    * rsync --archive --recursive --links --perms --times --human-readable --progress [customer] [customer]/data/
-  * fix /data/[customer]/olap-rust/site.yml
-  ```
-  - prefix: /
-    scheme: http
-    authority: localhost:9090 => authority: server:9090
-    ```
   * fix /etc/nginx/sites-enabled/default
-    * remove block like this:
+    * remove block like this (customer_port should be the same as in option proxy.port in helm chart ):
     ```
       server {
         server_name [customer].goalprofit.com;
@@ -107,15 +98,29 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
         listen 80;
       }
     ```
+  * sudo nginx -s reload
 
-* append record in DNS https://dash.cloudflare.com
+* append record in DNS. For example on https://dash.cloudflare.com
 * issue SSL certificate:
   * sudo certbot --nginx
   * enter email
-* install node-exporter:
-    * `microk8s helm3 repo add prometheus-community https://prometheus-community.github.io/helm-charts`
-    * `microk8s helm3 repo update`
-    * `microk8s helm3 install node-exporter prometheus-community/prometheus-node-exporter`
+* register instance in miracl (https://miracl.com/) and store [miracl_client_id] and [miracl_client_secret]
+* create secrets:
+  * secret for pulling from docker hub
+    `microk8s kubectl --namespace mckesson-sandbox create secret docker-registry regcred --docker-server=https://index.docker.io/v1/  --docker-username=dockerhub_user --docker-password=dockerhub_password`
+  * secret for service principal with admin privelegies:
+    `microk8s kubectl --namespace mckesson-sandbox create secret generic secret-admin --from-literal=username=admin --from-literal=password=[admin_password]`
+  * secret for service principal without admin privelegies:
+    `microk8s kubectl --namespace mckesson-sandbox create secret generic secret-service --from-literal=username=user --from-literal=password=[user_password]`
+  * secret for miracl
+    `microk8s kubectl --namespace mckesson-sandbox create secret generic miracl-client --from-literal=id=[miracl_client_id] --from-literal=secret=[miracl_client_secret`
+  * secret for session cookie:
+    * create base64 string:
+      `microk8s kubectl --namespace mckesson-sandbox create secret generic cookie-session --from-literal=key=$(echo [random string]|base64)`
+  * create corresponing users in .htpasswd
+      `cd /data/[customer_id]/data`
+      `htpasswd -bB admin [admin_password]`
+      `htpasswd -bB user [user_password]`
 * install helm chart
 
 
