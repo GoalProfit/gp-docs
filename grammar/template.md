@@ -131,6 +131,7 @@ scalar
   | "first"       # find the value of the first argument that corresponds to the minimal value of the second argument
   | "last"        # find the value of the first argument that corresponds to the maximal value of the second argument
   | "prefix"      # finds the common prefix of two given string arguments. The remaining part is replaced with the *** sequence
+  | "round"       # returns the nearest value (rounded value) of a given argument and second argument as precision.
   ```
 
 `<expression>` – generic expression, The order of rules defines the priorities of corresponding operations.
