@@ -117,11 +117,11 @@ server {
   * secret for session cookie:
     * create base64 string:
       `microk8s kubectl --namespace [customer_id] create secret generic cookie-session --from-literal=key=$(echo [random string]|base64)`
-  * create corresponing users in .htpasswd
-      `cd /data/[customer_id]/data`
-      `htpasswd -bB admin [admin_password]`
-      `htpasswd -bB user [user_password]`
 * install helm chart
+* create default users in .htpasswd
+    `cd /data/[customer_id]/data`
+    `htpasswd -bB admin [admin_password]`
+    `htpasswd -bB user [user_password]`
 
 
 
