@@ -1,6 +1,6 @@
 # Scalability
 
-GoalProfit platform supports the following cluster deployment:
+Digital Wave platform supports the following cluster deployment:
 
 * Cluster topology: ring
 * Scaling principle: sharding, replication

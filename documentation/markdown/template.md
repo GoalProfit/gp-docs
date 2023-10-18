@@ -1,4 +1,4 @@
-# GoalProfit Markdown Optimization
+# Digital Wave Markdown Optimization
 
 
 Markdowns are used to temporarily increase demand for low-demand products, ideally long enough to sell through all stock. Markdowns are caused by excess inventory at the end of a selling season. Since most markdowns are not planned for in advance (or at least accounted for in the pre-season planning stages), they frequently drain profits considerably more than they have to.
@@ -17,7 +17,7 @@ The markdown optimization process begins with the creation of a markdown report 
 After you've decided which products to optimize, you may analyze the recommendations to double-check the forecasts and compare different optimization runs. You may also review the analysis tab for each individual item and, if required, override the suggestions. Finally, you may approve the markdown recommendations and, if necessary, mass approve them.
 
 * Initial Setup
-  * [About Goalprofit Applications](../user_guide/)
+  * [About Digital Wave Applications](../user_guide/)
   * [Markdown Navigation Bar](navigation/)
     * Report
     * Strategy
@@ -46,10 +46,10 @@ Using pricing optimization retailers get:
 Pricing solutions enable retailers to maximize GMROI (Gross Margin Return on Investment) 
 by setting optimal initial prices, promotions, and markdowns.
 
-# About GoalProfit Applications 
+# About Digital Wave Applications 
 
-GoalProfit is designed to automate pricing, making recommendations based on price rules, competitor prices, forecasts, and elasticity.
-This guide provides a basic introduction to the GoalProfit platform and its components.
+Digital Wave is designed to automate pricing, making recommendations based on price rules, competitor prices, forecasts, and elasticity.
+This guide provides a basic introduction to the Digital Wave platform and its components.
 
 ![](../user_guide/media/user_guide/image8.jpeg)
 

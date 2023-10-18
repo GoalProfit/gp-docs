@@ -1,10 +1,10 @@
 # What is Price Optimization?
 
-GoalProfit is a suite of SaaS applications for category managers, pricing analysts, trade marketing, and merchandising executives. With Dynamic and Rules-Based Pricing, GoalProfit automates your re-pricing and executes the pricing strategy. By giving real-time, intra-day, and online pricing recommendations at scale and speed, GoalProfit will help you maintain a competitive position, protect your margin, and adhere to product relationships and other pricing policies.
+Digital Wave is a suite of SaaS applications for category managers, pricing analysts, trade marketing, and merchandising executives. With Dynamic and Rules-Based Pricing, Digital Wave automates your re-pricing and executes the pricing strategy. By giving real-time, intra-day, and online pricing recommendations at scale and speed, Digital Wave will help you maintain a competitive position, protect your margin, and adhere to product relationships and other pricing policies.
 
 Dynamic pricing is a pricing strategy where fixed prices are replaced with variable prices. Typically, a business will set prices at a certain amount when going into a specific season. In contrast, dynamic pricing will involve multiple price changes within a day.
 
-The system, developed by GoalProfit, predicts at what price items are most profitable to sell and boosts sales by analyzing demand elasticity. A low-code platform, it flexibly adjusts to users without long development cycles. To do this, the model focuses on the main demand drivers: seasonality, promotional activity, inventory levels, price elasticity of demand, and assortment rotation. The system considers the costs of store re-evaluation, more than 40 pricing rules, and competitor data.
+The system, developed by Digital Wave, predicts at what price items are most profitable to sell and boosts sales by analyzing demand elasticity. A low-code platform, it flexibly adjusts to users without long development cycles. To do this, the model focuses on the main demand drivers: seasonality, promotional activity, inventory levels, price elasticity of demand, and assortment rotation. The system considers the costs of store re-evaluation, more than 40 pricing rules, and competitor data.
 
 ## Glossary
 
@@ -17,7 +17,7 @@ The system, developed by GoalProfit, predicts at what price items are most profi
 
 ## **When to use**
 
-GoalProfit is a high-performance, in-memory MPP (Massively Parallel Processing) database specifically designed for analytics. From business-critical data applications to advanced analytics, GoalProfit helps you analyze large volumes of data faster than ever before, helping you to accelerate your reporting, build intelligence applications, and to turn data into value.
+Digital Wave is a high-performance, in-memory MPP (Massively Parallel Processing) database specifically designed for analytics. From business-critical data applications to advanced analytics, Digital Wave helps you analyze large volumes of data faster than ever before, helping you to accelerate your reporting, build intelligence applications, and to turn data into value.
 
 Pricing solutions enable retailers to maximize GMROI (Gross Margin Return on Investment) by setting optimal initial prices, promotions, and markdowns.
 
@@ -31,17 +31,17 @@ Using pricing optimization retailers get:
 
 The following key features help you develop the pricing strategy and achieve desired KPIs: 
 
-**GoalProfit Price Management Software-as-a-Service**
+**Digital Wave Price Management Software-as-a-Service**
 
 Price management software is a type of tool that businesses can use to manage the prices of their products or services. This type of software can help businesses to set and maintain competitive prices, while also taking into account factors such as the cost of goods sold, market demand, and competitors' prices. Some features of price management software include the ability to track and analyze market data, set pricing rules and strategies, and automate the process of updating prices. Control your pricing and maximize profitability by using an advanced pricing platform that provide you with very accurate pricing recommendations that are geared towards your sales and revenue targets.
 
-**GoalProfit Price Optimization Software-as-a-Service**
+**Digital Wave Price Optimization Software-as-a-Service**
 
 The forecast module in price optimization uses data analysis and algorithms to predict future market conditions and consumer behavior. This information is used to identify the prices that will maximize a company's profitability. Factors such as promotional activity, inventory levels, price elasticity of demand, and assortment rotation are taken into account when making price recommendations.
 
 Using dynamic pricing to set fair and competitive prices, businesses can improve their customers' satisfaction and build stronger relationships with them. By regularly adjusting their prices based on market conditions and competitors' prices, dynamic pricing provides valuable insights into market trends and consumer behavior, which can help businesses make more informed decisions about their pricing strategies.
 
-**GoalProfit Markdown Optimization Software-as-a-Service**
+**Digital Wave Markdown Optimization Software-as-a-Service**
 
 Markdowns are used to temporarily increase demand for low-demand products, ideally long enough to sell through all stock. Markdowns are caused by excess inventory at the end of a selling season. Since most markdowns are not planned for in advance (or at least accounted for in the pre-season planning stages), they frequently drain profits considerably more than they have to.
 

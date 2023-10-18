@@ -1,6 +1,6 @@
 # Fundamental Principles
 
-GoalProfit platform is built on the following fundamental principles:
+Digital Wave platform is built on the following fundamental principles:
 
 * Vertical integration
 * Vertical and horizontal scalability

@@ -1,6 +1,6 @@
 # Documentation
 
-Welcome to the administrative guide for our GoalProfit platform! 
+Welcome to the administrative guide for our Digital Wave platform! 
 This guide is designed to help you navigate and use the various features and functions available in the panel.
 
 ## Glossary
@@ -11,4 +11,4 @@ This guide is designed to help you navigate and use the various features and fun
 * [First Time Walktrough](quick_guide/)
 * [Appendix: Attributes, Metrics, Formulas, Timeframes](parameters/)
 
-We hope this guide has been helpful in getting you started with the administrative panel for our GoalProfit platform. If you have any questions or need further assistance, please don't hesitate to contact our support team.
+We hope this guide has been helpful in getting you started with the administrative panel for our Digital Wave platform. If you have any questions or need further assistance, please don't hesitate to contact our support team.

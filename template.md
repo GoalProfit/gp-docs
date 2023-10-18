@@ -1,8 +1,8 @@
 # Documentation
 
-GoalPlatform is the platform for the rapid development of reliable business applications.
+Digital Wave Platform is the platform for the rapid development of reliable business applications.
 
-## GoalProfit Analytical Platform
+## Digital Wave Analytical Platform
 
 * [Fundamental principles](principles/)
 * [System component](components/)
@@ -22,7 +22,7 @@ GoalPlatform is the platform for the rapid development of reliable business appl
   * [Report config](admin/report/config/)
 * [Dataset users](admin/dataset/users/)    
 
-## GoalProfit Applications
+## Digital Wave Applications
 * Application settings
   * [Attribute](admin/attribute/config/)
   * [Metric](admin/metric/config/)
