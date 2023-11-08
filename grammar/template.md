@@ -118,10 +118,10 @@ scalar
   | "year"        # returns year component of the <date> value
   | "month"       # returns month component of the <date> value
   | "day"         # returns day component of the <date> value
-  | "hour"        # returns hour component of the <time> value
-  | "minute"      # returns hour component of the <minute> value
-  | "second"      # returns hour component of the <second> value
-  | "weekday"     # computes zero based weekday number for the given <datetime> value where week starts from Sunday
+  | "hour"        # returns hour component of the <datetime> value
+  | "minute"      # returns minute component of the <datetime> value
+  | "second"      # returns second component of the <datetime> value
+  | "weekday"     # computes zero based weekday number for the given <date> value where week starts from Sunday
   ```
 
 `<binop>` – binary operator defines a double argument function.
