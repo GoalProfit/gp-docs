@@ -7,11 +7,11 @@
 * *calc*: string - formula name from the "Formulas" section
 
 * *aggregation*: string - aggregation function. Valid values are:
-  - *sum*
-  - *avg*
-  - *mix*
-  - *max*
-  - *min*
+  - *sum*  - computes arithmetic sum of the aggeragted values
+  - *avg*  - computes arithmetic average of the aggeragted values
+  - *mix*  - compute a weighted average of the aggeragted values 
+  - *max*  - finds maximal value from the aggeragted values
+  - *min*  - finds minimal value from the aggeragted values
 
 * *title*: (value, row, column, meta) => string - a function that returns tooltip text when you hover over a cell.
 
