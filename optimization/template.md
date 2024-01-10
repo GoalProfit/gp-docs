@@ -276,8 +276,8 @@ Example - “Acceptable Change Rule”
       ],
       "filter_not": [],
       "strict": true,
-      "min": 100,
-      "max": 200,
+      "min_abs": 100,
+      "max_abs": 200,
       "target": null
     },
 ```
