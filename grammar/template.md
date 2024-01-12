@@ -74,8 +74,6 @@ scalar
   | "(" <filter> ")"
   | <filter> "||" <filter>        # logical disjunction
   | <filter> "&&" <filter>        # logical conjunction
-  | <filter> "//" <filter>        # logical difference
-  | <filter> "/\\" <filter>       # logical symmetric difference
   | <symbols> "==" <scalar>       # for example item == 'SKU12345`
   | <symbols> "!=" <scalar>       # for example item.color != 'RED`
   | <symbols> "<>" <scalar>       # for example item.color <> 'RED`
