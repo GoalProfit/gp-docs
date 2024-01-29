@@ -210,7 +210,10 @@ The recommended price of the goods must be within the established min / max boun
   // the max limit as a percentage relative to the given price.
   // calculated as reference_price * max
   max: Option<f64>,
-  
+
+  // ignore MinPriceChange rule in case of super_strict:true. By default is false.
+  super_strict: Option<bool>,
+
   // target price as a percentage of the target price
   // calculated as reference_price * target
   // generally, the recommendation will be attracted to the target price
