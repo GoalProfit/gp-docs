@@ -272,8 +272,7 @@ Example - “Acceptable Change Rule”
       "name": "Permissible price change",
       "text": "The recommended price should be within 100r to 200r",
       "grouper": [],
-      "filter": []
-      ],
+      "filter": [],
       "filter_not": [],
       "strict": true,
       "min_abs": 100,
