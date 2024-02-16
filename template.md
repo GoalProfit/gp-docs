@@ -31,6 +31,7 @@ Digital Wave Platform is the platform for the rapid development of reliable busi
   * [Formula](admin/formula/config/)
 * [Documentation, Guides & Resources](documentation/)
   * [Getting Started](documentation/user_guide/)
+  * [Quick Start Guide](documentation/quickstart_guide/)
   * [Admin Guide](documentation/admin_guide/)
   * [User Guide: Price Optimization](documentation/price_rules/)
   * [User Guide: Markdown Optimization](documentation/markdown/)
