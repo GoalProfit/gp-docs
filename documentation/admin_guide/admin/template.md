@@ -9,6 +9,32 @@
 * [Solutions](#solutions-tab)
 * [Flow Tab](#flow-tab)
 
+<!--# Admin-->
+<h1>Admin UI</h1>
+The admin UI is an interface designed to configure general system settings, integration flows, internal reports, configurations, and the role model.
+To access the administration panel, you may enter [https://hostname/admin](/admin) in the address bar.
+The admin UI looks as follow:
+
+
+<img height="550" src="mceclip1new.PNG"/>
+
+Help information is located on the right side. It can be edited through the page editor interface.
+The *Reload button* at the top right reloads the data in the system.
+The *Submit Changes* button at the bottom left saves the changes on the page.
+The warning *Some changes are in memory only* occurs when there is a desynchronization between the data in the administration panel and the database. The *Write dataset to disk* and *Discard changes* buttons allow you to write data to the database or discard it, respectively.
+You can also switch between the following tabs:
+- Config
+- Streams
+- Reports
+- Sources
+- Solutions
+- Users
+- Flow
+<h2>Config tab</h2> 
+<img src="mceclip2.png"/>
+
+This tab contains general server settings.
+Settings in details are available [there](../../admin)
 
 ## **Config Tab**
 
@@ -35,7 +61,8 @@ Custom Parameters:
 -   **timezone** - sets the time zone for date & time functions used in
      queries.
 
-### **Streams Tab**
+<h2>Streams tab</h2> 
+<img height="550" src="mceclip3.png"/>
 
 This tab is designed to manage data loading flows into the system. Data
 is loaded via streams. Streams represent structured material data. It is
@@ -48,6 +75,8 @@ Stream has a name, a set of columns, and a set of spouts. Spouts are
 data sources for a stream. The platform always preserves in its original
 form all the data that enters it. The data format can be anything as
 long as it can be converted to a column type.
+
+The physical representation of a stream is a set of content addressable flat chunks by default stored in the data/objects folder and mapped to the system memory. Each chunk holds up to 65,536 rows. Chunk layout can be columnar or row-oriented depending on the stream settings. Besides actual data, each chunk holds indexes for indexed columns. Each chunk represents an atomic job in the map-reduce pipeline.
 
 When setting up streams, apache storm terminology is used.
 
@@ -66,15 +95,18 @@ are available to the user:
 -   Records
 -   Flow.
 
-In edit mode, the top right shows the number of lines in the stream and
-two buttons
-
-![](./image36.png)
+In edit mode the amount of records in stream and two buttons at the top right are shown:
+<img src="mceclip25.png"/>
 
 -   refresh - refreshes stream data
--   restart - completely reloads the data into the stream
+-   restart - complete reload of stream data
 
-### **Reports Tab**
+You can use search field to find stream.
+The *Create stream* button allows you to create a new stream.
+The *Delete stream* button allows you to delete a stream.
+
+<h2>Reports tab</h2> 
+<img height="550" src="mceclip13.png"/>
 
 This tab contains information about reports. A report is an entity that
 contains transformed data based on the data existing in the system. The
@@ -89,11 +121,13 @@ The generated reports can be viewed:
 
 ![](./image9.jpeg)
 
-The user has access to the search string by the name of the report. The
-Create report button allows you to create a new report. The Delete
-Report button allows you to delete a report. When you click on the name
-of a report or create a new one, the user switches to report editing
-mode.
+You have access to the search field, it supports regular expressions.
+
+The *Create report* button allows you to create a new report.
+
+The *Delete report* button allows you to delete a report.
+
+When you click on the report name or create a new one, the user switches to the report edit mode.
 
 In the report editing mode, the following tabs are available to the
 user:
@@ -102,37 +136,32 @@ user:
 -   Records,
 -   Flow.
 
-### **Users tab**
-
-![](./image32.png)
+<h2> Users tab </h2> 
+<img src="mceclip17new.PNG"/>
 
 This tab contains a list of users, their accesses, and roles. Only the
 administrators have the right to configure and save changes.
 
 The description of each user is an object:
 
--   id: string - username.
--   name:string - name of the user.
--   email: string - email of the user.
--   meta: object - additional restrictions for the user:
-    -   categories: string\[\] - list of categories available to the
-         user. If not specified or empty - all categories are
-         available.
--   groups: string\[\] - a list of the groups the user is a member of.
-     Two groups are currently available:
-    -   admin
-    -   category manager.
--   access: object\[\] - restricting access to streams
-    -   stream: string - stream name
-    -   filter0: string - filter part added to filter0 by "and" for user
-         username to all requests for this stream
-    -   filter1: string - filter part added to filter1 by "and" for user
-         username to all requests for this stream
-    -   filter2: string - filter part added to filter2 by "and" for user
-         username to all requests for this stream
-    -   canWrite: bool - if true, allows the user to add entries to the
-         stream
-    -   canReset: bool - if true, allows the user to reset the stream.
+* *id*: string - username.
+
+* *name*:string - name of the user.
+
+* *email*: string - email of the user.
+
+* *meta*: object - additional restrictions for the user:
+  - *categories*: string[] - list of categories that are available to the user If not specified or empty - all categories are available.
+ 
+* *groups*: string[] - a list of the groups the user is a member of. Two groups are currently available: admin, category-manager.
+
+* *access*: object[] - restricting access to streams
+  - *stream*: string - stream name
+  - *filter0*: string - filter part added to filter0 by "and" for user *username* to all requests for this stream
+  - *filter1*: string - filter part added to filter1 by "and" for user *username* to all requests for this stream
+  - *filter2*: string - filter part added to filter2 by "and" for user *username* to all requests for this stream
+  - *canWrite*: bool - if true, allows the user to add entries to the stream
+  - *canReset*: bool - if true, allows the user to reset the stream.
 
 ### **Sources Tab**
 
@@ -150,16 +179,15 @@ This tab contains a list of system solutions. A solution is a set of
 metrics that can be used when creating the main report. Config2 page is
 a visualization of the "default" solution.
 
-### **Flow Tab**
+<h2>Flow tab </h2> 
+<img height="500" src="mceclip22.png"/>
 
-![](./image48.png)
 
-This tab displays relationships between entities in the system. The user
-can search by entity name. The user can exclude an entity using the
-Exclude line.
-
-The user can export links as png images using the image button in the
-middle on top of flow chart.
+This tab displays relationships between entities in the system.
+You can search by entity name via *Search* field.
+You can exclude an entity via the *Exclude* field.
+You can export links as png images.
+You can choose displayed entities via the flags on the left:
 
 ![](./image24.png)
 
@@ -174,3 +202,12 @@ The user can enable and disable the display using the flags on the left:
 -   Link names: show link names
 
 ##### More about [admin configuration](../config/).
+
+<style>
+h1 img {
+  display: inline-block;
+  height: 22px;
+  margin-top: -3px;
+  margin-left: -16px;
+}
+</style>
