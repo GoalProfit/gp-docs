@@ -7,7 +7,7 @@ This guide is designed to help you navigate and use the various features and fun
 
 * [Navigating the basic interface](interface/)
 * [Understanding Administration panel](admin/)
-* [Configuring the Administrative panel](config/)
+* [Configuring the Administrative panel](admin/config/)
 * [First Time Walktrough (Environment setup)](../quickstart_guide/)
 * [Config2: Attributes, Metrics, Formulas, Timeframes](parameters/)
 
