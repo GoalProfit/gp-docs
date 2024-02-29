@@ -1,0 +1,125 @@
+## Site.yml file stores the startup configuration of the analytics server. Without the configuration file, the server will not start.
+## All settings can be overridden in the config.yml file, the parameters are all optional and have default values.
+## Cookie_session_key is responsible for encrypting the authorization cookie, by default a random base64 string is generated.
+## It is recommended to use set cookie_session_key, otherwise a new value will be generated every time the server is restarted.
+## Cookie_session_name is responsible for the name of the authorization cookie, the default is _hyd.
+## The other parameters are responsible for authorization cookie settings, by default the format of cookie_session parameters is the same as the default format of cookie attributes in browser application devtools.
+
+## Authorization cookie encryption key, defaults to a random base64 string
+#cookie_session_key: IOx+/kgU/D3nnNTwgUpuPmuZOQNPlOxcRB2sVbA7xR8=#
+## Authorization cookie name, default _hyd
+# #cookie_session_name: _hyd
+## Authorization cookie domain, defaults to the empty string
+#cookie_session_domain: ''
+## Authorization cookie path, defaults to true
+#cookie_session_secure: true
+## Sign of httpOnly authorization cookie
+#cookie_session_http_only: true
+## Authorization cookie lifetime in seconds, default u64 { 60 * 60 * 24 * 7 } = 604800
+#cookie_session_max_age: 604800
+
+
+## Owner is the user who created the configuration file (informative string, setting does not affect the server)
+##owners:
+## - oleg
+
+## The port number through which the server will be accessed, by default 8080
+#port: 8080
+
+## Array of strings, a list of available hosts from which to connect. By default, the list is empty:
+#hosts: []
+
+## List of available proxies, by default empty:
+## Proxy is an object that contains the following fields:
+## prefix: String,
+## scheme: String,
+## authority: String,
+## users: Option<Vec<String>>,
+## groups: Option<Vec<String>>,
+## prefix, scheme, authority are mandatory fields, users, groups are optional fields.
+## The server has its own endpoints (URLs) that are available to it (example: /admin; /graphql; etc).
+## if the default list does not contain the desired URL, the server will refer to the proxy list.
+## prefix is the URL that will be processed by the proxy.
+## Proxies can be restricted by user or group. 
+## The server will return an error if the user does not have access or does not belong to a prescribed group. Example:
+
+## - prefix: /engine-rest
+## scheme: http
+## authority: auth-proxy
+## groups:
+## - admin
+## users: 
+## - user1
+
+## After authorization is confirmed, the server will access the proxy at http://auth-proxy/engine-rest.
+## where auth-proxy is the authority value, engine-rest is the prefix value, http is the scheme value
+
+## - prefix: /engine-rest
+## scheme: http
+## authority: auth-proxy
+## groups:
+## - admin
+## users: 
+## - user1
+
+## After authorization is confirmed, the server will access the proxy at http://auth-proxy/engine-rest.
+## where auth-proxy is the authority value, engine-rest is the prefix value, http is the scheme value
+
+#proxies:
+# - prefix: /engine-rest
+# scheme: http
+# authority: auth-proxy
+# - prefix: /camunda
+# scheme: http
+# authority: auth-proxy
+# - prefix: /miracl
+# scheme: http
+# authority: miracl:8000
+# - prefix: /scrap
+# scheme: http
+# authority: scrapper:3000
+# - prefix: /auth
+# scheme: http
+# authority: auth:5088
+# - prefix: /
+# scheme: http
+# authority: retail:9090
+
+## prefix: / means that all requests will be processed by proxy in http://retail/ , if the required URL is not found in default and proxy lists.
+## IMPORTANT: prefix: / must be the last element in the list, otherwise the server will not be able to access list proxies and will redirect all https request to retail.
+
+## When requesting a report, the server raises memory cached chunks, aggregates the data and returns the result.
+## To provide a quick response, the server keeps in-memory the chunks that were previously requested.
+## Parameters to configure the cache:
+
+## max_time, values in seconds
+## max_size, values in bytes
+
+## No cache will be created if the max_size parameter is reached and until the old cache is cleared by max_time.
+## max_time_by_name is a dictionary for storing caches by name, used for caches that should not be cleared by default max_time.
+
+## Example (increase cache lifetime for report1 by a factor of 10):
+## report_chunks_cache_max_time: 14400
+## reports_chunks_cache_max_time_by_name:
+## report1: 144000
+
+
+## Cache for storing cached reports (from the admin panel, reports tab)
+#reports_cache_max_size: 10000000000
+#reports_cache_max_time: 1400
+#reports_cache_max_max_time_by_name:
+
+## Cache to store report chunks (when the report has the stored: true checkbox)
+#report_chunks_cache_max_size: 200000000000
+#report_chunks_cache_max_time: 14400
+#report_chunks_cache_max_time_by_name:
+
+## Cache to store cached linked tables (links in report/streams config)
+## Built links greatly increase performance because they are used very often.
+#lookup_tables_cache_max_size: 40000000000
+#lookup_tables_cache_max_time: 14400
+#lookup_tables_cache_cache_max_time_by_name: 
+
+## Threads is the number of threads that will be used to process requests (default is 8)
+#save_threds: 8
+#fetch_threds: 8
