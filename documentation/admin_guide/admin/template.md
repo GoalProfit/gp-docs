@@ -201,7 +201,7 @@ The user can enable and disable the display using the flags on the left:
 -   Links: follow links
 -   Link names: show link names
 
-##### More about [admin configuration](../config/).
+##### More about [admin configuration](./config/).
 
 <style>
 h1 img {

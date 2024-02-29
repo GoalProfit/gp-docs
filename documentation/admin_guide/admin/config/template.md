@@ -407,10 +407,12 @@ The user can enable and disable the display using the flags on the left:
 ## Reports Config
 
 ![](./image28.png)
+<!--img src="mceclip12new.PNG"/-->
 
-This tab contains the main parameters of the report.
+This tab contains general report settings.
+The system supports storing reports referenceable by a report name.
 
-Custom Parameters:
+Parameters:
 
 -   name - report name (string)
 
@@ -478,46 +480,46 @@ Object structure:
 ## Reports Links
 
 ![](./image21.png)
+<!--img src="mceclip13new.PNG"/-->
 
-Set up links to other streams and reports. The linked stream/report data
+This tab contains report links to other streams and reports. The linked stream/report data
 is accessed through the linkName.field1 point. Advertised links cannot
 be used in the current report, but can be used in other streams/reports
-that use this one. It is an array of objects:
+that use this one. Each link is an object with the following properties::
 
--   linkName: string - link name
-
--   sourceName: string - name of the stream or report to be linked
-
--   columnPairs: object\[\] - a list of columns on which to link. Is an
-     array of objects:
-
--   srcColumn: string - column in the current stream
-
--   dstColumn: string - link stream/report column
+- *linkName*: string - link name
+- *sourceName*: string - name of the stream/report to be linked
+- *columnPairs*: object[] - list of columns to link to:
+  - *srcColumn*: string - column in the current stream
+  - *dstColumn*: string - column in link stream/report
 
 ## Reports Funcs
 
 ![](./image26.png)
+<!--img src="mceclip14new.PNG"/-->
 
-Shows computed columns. Is an array of objects:
-
--   name: string - column name
-
--   calc: string - the formula by which the column value is calculated
-
--   args: string\[\] - arguments of the function
+This tab contains report functions. Shows computed columns. Each function is an object with the following properties:
+- *name*: string – column name
+- *calc*: string – the formula by which the column value is calculated
+- *args*: string[] – formula args
 
 ## Reports Records
 
 ![](./image42.png)
+<!--img src="mceclip15new.PNG"/-->
 
-Export Data
+This tab contains information about the content of the report.
+
+The following operations are available:
+- Selecting the number of rows to display per page
+- Export in csv format with the *Export data* button
 
 ## Reports Flow
 
 ![](./image22.png)
+<!--img height="450" src="mceclip16new.PNG"/-->
 
-Show relationships between entities in the system.
+This tab displays the relationships between the current report and the linked entities.
 
 The user can enable and disable the display using the flags on the left:
 
@@ -531,43 +533,7 @@ The user can enable and disable the display using the flags on the left:
 
 -   Links: follow links
 
-##### Check Appendix for more informations about [Parameters](../parameters/).
-
-<h3>Config tab</h3>
-<img src="mceclip12new.PNG"/>
-
-This tab contains general report settings.
-The system supports storing reports referenceable by a report name.
-Settings in details are available [there](../docs/admin/report/config/)
-<h3>Links tab</h3>
-<img src="mceclip13new.PNG"/>
-
-This tab contains report links to other streams and reports. The linked stream/report data is accessed through the linkName.field1 point. Each link is an object with the following properties:
-  
-- *linkName*: string - link name
-- *sourceName*: string - name of the stream/report to be linked
-- *columnPairs*: object[] - list of columns to link to:
-  - *srcColumn*: string - column in the current stream
-  - *dstColumn*: string - column in link stream/report
-<h3>Funcs tab</h3>
-<img src="mceclip14new.PNG"/>
-
-This tab contains report functions. Each function is an object with the following properties:
-- *name*: string – column name
-- *calc*: string – the formula by which the column value is calculated
-- *args*: string[] – formula args
-<h3>Records tab</h3>
-<img src="mceclip15new.PNG"/>
-
-This tab contains information about the content of the report.
-
-The following operations are available:
-- Selecting the number of rows to display per page
-- Export in csv format with the *Export data* button
-<h3>Flow tab</h3>
-<img height="450" src="mceclip16new.PNG"/>
-
-This tab displays the relationships between the current report and the linked entities. A detailed description is available below.
+##### Check Appendix for more informations about [Solution Tab (Config2)](../../parameters/).
 
 
 
