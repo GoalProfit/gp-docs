@@ -123,3 +123,6 @@
 ## Threads is the number of threads that will be used to process requests (default is 8)
 #save_threds: 8
 #fetch_threds: 8
+
+#This flag allows you to enable or disable the ability to view stream spout data for non-admin users. Non-admin users will be able to view/download loaded files if the flag is set to true.
+#spout_not_admin_access: false
