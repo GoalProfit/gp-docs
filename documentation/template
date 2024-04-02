@@ -1,11 +1,12 @@
 # Documentation
 
-GoalPlatform is the platform for the rapid development of reliable business applications.
+Digital Wave Platform is the platform for the rapid development of reliable business applications.
 
 
 
 ## [Getting Started](user_guide/)
 ---
+  * [Introdution](introduction)
   * [Main Panel](user_guide/panel/)
   * [Menu Bar: Dashboard & Map, KVI & Prices, Competitors analysis & Reports](user_guide/menu/)
   * [Additional pages](user_guide/pages/)
@@ -29,6 +30,7 @@ GoalPlatform is the platform for the rapid development of reliable business appl
 &nbsp;
 ## [Price Optimization](price_rules/)
 ---
+  * [Quick Start Guide](quickstart_guide/)
   * [Price Optimization Process](price_rules/optimization/)
     * Reports
     * Strategies
@@ -47,8 +49,8 @@ GoalPlatform is the platform for the rapid development of reliable business appl
 ## [Markdown Optimization](markdown/)
 ---
 * Initial Setup
-  * About Goalprofit Applications
-  * Logging into GoalProfit
+  * About Digital Wave Applications
+  * Logging into Digital Wave
   * [Markdown Navigation Bar](markdown/navigation/)
     * Report
     * Strategy

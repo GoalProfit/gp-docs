@@ -210,7 +210,10 @@ The recommended price of the goods must be within the established min / max boun
   // the max limit as a percentage relative to the given price.
   // calculated as reference_price * max
   max: Option<f64>,
-  
+
+  // ignore MinPriceChange rule in case of super_strict:true. By default is false.
+  super_strict: Option<bool>,
+
   // target price as a percentage of the target price
   // calculated as reference_price * target
   // generally, the recommendation will be attracted to the target price
@@ -272,12 +275,11 @@ Example - “Acceptable Change Rule”
       "name": "Permissible price change",
       "text": "The recommended price should be within 100r to 200r",
       "grouper": [],
-      "filter": []
-      ],
+      "filter": [],
       "filter_not": [],
       "strict": true,
-      "min": 100,
-      "max": 200,
+      "min_abs": 100,
+      "max_abs": 200,
       "target": null
     },
 ```
@@ -500,6 +502,58 @@ Example - "Minimum price change"
     "range_end": 10000000.0
   }
 ```
+<h2>Rule AbsMinPriceChange</h2>
+The optimizer does not return a recommendation for products whose calculated optimal price is in the range [reference_price + min_abs, reference_price + max_abs]. The rule is applied if reference_price is in the range (range_start, range_end].
+
+
+```json
+{
+  <header>,
+  
+  type: "abs_min_price_change",
+  
+  // the lower min price limit bound as a percentage relative to the given price.
+  // calculated as reference_price + min_abs
+  min_abs: Option<f64>,
+  
+  // the upper max price limit bound as a percentage relative to the given price.
+  // calculated as reference_price + max_abs
+  max_abs: Option<f64>,
+  
+  // price against which boundaries are determined
+  reference_price: String,
+  
+  // lower min price limit bound of rule applicability, relative to reference_price
+  range_start: Option<f64>,
+  
+  // upper max price limit bound of rule applicability, relative to reference_price
+  range_end: Option<f64>
+}
+```
+
+
+Example - "Minimum price change"
+
+```json
+{
+    "type": "abs_min_price_change",
+    "id": "7879hkjh",
+    "name": "Minimum price change abs",
+    "text": "Do not change the price if the price change is between {min_abs} and {max_abs} for prices between {range_start} and {range_end}.\n",
+    "number": 13,
+    "weight": 1.0,
+    "grouper": [],
+    "filter": [],
+    "filter_not": [],
+    "min": -1.0,
+    "max": 1.0,
+    "reference_price": "current_price",
+    "range_start": 0.0,
+    "range_end": 10000000.0
+  }
+```
+
+
 
 <h2>Rule RoundingRange</h2>
 

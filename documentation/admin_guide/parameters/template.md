@@ -75,6 +75,7 @@ Aggregate report scores (Vals)
 |editable |(row, column, meta) => bool|null|A function that returns the ability to edit the value of a cell|
 |keys |string|null|Makes sense if editable = true and stream is full. List of stream keys on which the gp-table component is built (usually combined). Keys are listed separated by commas or spaces|
 |stream |string|null| Makes sense if editable = true. The name of the stream in which the record will be inserted when the value of the current cell is changed. Flow structure requirements: <ul><li>name: <key 1></li><li>type: <key type 1></li><li>- name: <key 2></li><li>type: <key type 2></li><li><other keys.</li></ul>   The order of the keys must be the same as keys> <ul><li>\- name: create_user  type: string </li><li>- name: create_time  type: double</li><li> -name: value </li><li> type: \<cell value type></li></ul>|
+|editValue|(value, row, col) => string|null|Function that edit (change) values|
 |position|int|0|Order of non-key columns when loading a file.|
 |actionable |bool|false|If the value is true, then when clicking on the cell, the function described in action will be executed|
 |actionicon |string|null|The name of the icon from the https://feathericons.com set. If actionable = true, then an icon with the given name will be displayed in the cell|

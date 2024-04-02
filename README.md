@@ -1,10 +1,10 @@
 # Product overview
 
-The Product overview provides conceptual information about the GoalProfit product. This book defines terminology and includes implementation scenarios.
+The Product overview provides conceptual information about the Digital Wave product. This book defines terminology and includes implementation scenarios.
 
 ## Overview
 
-GoalProfit is a high-performance, in-memory MPP (Massively Parallel Processing) database specifically designed for analytics. From business-critical data applications to advanced analytics, GoalProfit helps you analyze large volumes of data faster than ever before, helping you to accelerate your reporting, build intelligence applications, and to turn data into value.
+Digital Wave is a high-performance, in-memory MPP (Massively Parallel Processing) database specifically designed for analytics. From business-critical data applications to advanced analytics, Digital Wave helps you analyze large volumes of data faster than ever before, helping you to accelerate your reporting, build intelligence applications, and to turn data into value.
 The system is designed to automate the pricing process, which includes the formation of recommendations based on price rules, competitor prices, forecasts and elasticity.
 The system is a comprehensive solution based on a microservice architecture that allows you to generate recommendations at regular prices with a speed close to online. 
 The system is built on the basis of the ELT (Extract, Load, Transform) process, which includes:
@@ -15,11 +15,11 @@ The system is built on the basis of the ELT (Extract, Load, Transform) process, 
 
 ## What is Price Optimization?
 
-GoalProfit is a suite of SaaS applications for category managers, pricing analysts, trade marketing, and merchandising executives. With Dynamic and Rules-Based Pricing, GoalProfit automates your re-pricing and executes the pricing strategy. By giving real-time, intra-day, and online pricing recommendations at scale and speed, GoalProfit will help you maintain a competitive position, protect your margin, and adhere to product relationships and other pricing policies.
+Digital Wave is a suite of SaaS applications for category managers, pricing analysts, trade marketing, and merchandising executives. With Dynamic and Rules-Based Pricing, Digital Wave automates your re-pricing and executes the pricing strategy. By giving real-time, intra-day, and online pricing recommendations at scale and speed, Digital Wave will help you maintain a competitive position, protect your margin, and adhere to product relationships and other pricing policies.
 
 Dynamic pricing is a pricing strategy where fixed prices are replaced with variable prices. Typically, a business will set prices at a certain amount when going into a specific season. In contrast, dynamic pricing will involve multiple price changes within a day.
 
-The system, developed by GoalProfit, predicts at what price items are most profitable to sell and boosts sales by analyzing demand elasticity. A low-code platform, it flexibly adjusts to users without long development cycles. To do this, the model focuses on the main demand drivers: seasonality, promotional activity, inventory levels, price elasticity of demand, and assortment rotation. The system considers the costs of store re-evaluation, more than 40 pricing rules, and competitor data.
+The system, developed by Digital Wave, predicts at what price items are most profitable to sell and boosts sales by analyzing demand elasticity. A low-code platform, it flexibly adjusts to users without long development cycles. To do this, the model focuses on the main demand drivers: seasonality, promotional activity, inventory levels, price elasticity of demand, and assortment rotation. The system considers the costs of store re-evaluation, more than 40 pricing rules, and competitor data.
 
 ## Pricing module
 
@@ -203,7 +203,7 @@ To implement the price recommendation process in the system, you need to take th
 
 Think about additional features (May be creating pages and some other objects)
 
-## Accessing GoalProfit platform
+## Accessing Digital Wave platform
 
 ### Users and Role Model Administration
 
@@ -286,4 +286,4 @@ For more details, please check:
 
 ## Legal Notice
 
-For information about legal notices, trademarks, disclaimers, warranties, export and other use restrictions, patent policy, and FIPS compliance, see [GoalProfit - Legal Page](documentation/).
+For information about legal notices, trademarks, disclaimers, warranties, export and other use restrictions, patent policy, and FIPS compliance, see [Digital Wave - Legal Page](documentation/).
