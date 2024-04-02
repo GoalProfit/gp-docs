@@ -95,6 +95,7 @@ server {
     proxy_set_header Host $host;
     proxy_read_timeout 600;
   }
+  client_max_body_size 200M;
   listen 80;
 }
     ```
