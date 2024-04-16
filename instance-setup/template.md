@@ -66,6 +66,9 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
   * setup max number of opened files for microk8s pods
     * open /var/snap/microk8s/current/args/containerd-env
     * fix line `ulimit -n 65536` to `ulimit -n 524288`
+  * setup max number of pods in cluster
+    * open /var/snap/microk8s/current/args/kubelet
+    * append line `--max-pods=200`
   * restart microk8s
     * `microk8s stop`
     * `microk8s start`
