@@ -8,7 +8,7 @@
 ## Authorization cookie encryption key, defaults to a random base64 string
 #cookie_session_key: IOx+/kgU/D3nnNTwgUpuPmuZOQNPlOxcRB2sVbA7xR8=#
 ## Authorization cookie name, default _hyd
-# #cookie_session_name: _hyd
+#cookie_session_name: _hyd
 ## Authorization cookie domain, defaults to the empty string
 #cookie_session_domain: ''
 ## Authorization cookie path, defaults to true
@@ -124,5 +124,5 @@
 #save_threds: 8
 #fetch_threds: 8
 
-#This flag allows you to enable or disable the ability to view stream spout data for non-admin users. Non-admin users will be able to view/download loaded files if the flag is set to true.
+##This flag allows you to enable or disable the ability to view stream spout data for non-admin users. Non-admin users will be able to view/download loaded files if the flag is set to true.
 #spout_not_admin_access: false
