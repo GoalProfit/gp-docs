@@ -23,7 +23,7 @@ The structure of the input json file:
   "items": <data_frame>,
 
   // List of optimization rules
-  "rules": Vec <<SamePrice> | <PctChange> | <AbsChange> | <Relations> | <FixedPrice> | <InitialPrice> | <BalancedOptimization>>,
+  "rules": Vec <<SamePrice> | <PctChange> | <AbsChange> | <Relations> | <AbsRelations> |<FixedPrice> | <InitialPrice> | <BalancedOptimization>>,
 
   // List of rules that are applied after finding the optimal price
   "post_rules": Vec <<FixedPrice> | <RoundingRange> | <PctChange> | <MinPriceChange>>
@@ -387,7 +387,6 @@ Example - "Brand Rule"
   "text": "Within the price zones, the price deviation of brand B should be between -20% and 20% relative to brand A"
   "min": 0.8,
   "max": 1.2,
-  "type": "relations",
   "selector": "item.Brend".
   "order": ["Brand А","Brand B"],
   "grouper": ["brand_group", "price_zone"]
@@ -412,6 +411,122 @@ Example - "Cross Zone Rule with Anchor Price"
   "max": 1.0,
   "firstIsAnchor": true
 }
+```
+<h2>Rule AbsRelations</h2>
+Rule of maximum/minimum price or margin deviation between product groups.
+
+```json
+{
+  <header>,
+  type: "abs_relations",
+
+  // an attribute that defines product groups for which the rule works
+  selector: String,
+
+  // an attribute containing information about the relative size of the product
+  volume_selector: Option<String>,
+  
+  // an attribute containing possible values from 'selector' for relation order.
+  order: <Vec<String>>, 
+  
+  // Enabling automatic order detection using sorted values from 'selector' attribute. By defualt is false.
+  // In case of auto_order is equalt to true, 'order' setting will be ignored.
+  auto_order: Option<bool>,
+  
+  // Sort order when auto_order is true. By defualt auto_order_ascending=True.
+  auto_order_ascending: Option<Bool>,
+    
+  // minimum deviation
+  min_abs: Option<f64>,
+  
+  // maximum deviation
+  max_abs: Option<f64>,
+
+  // Optimization target (price or margin, default: price)
+  opt_target: Option<String>,
+
+  // Working with an anchor product.
+  // An anchor product is a product for which optimization does not change the original price. There can be only one anchor product inside a rule.
+  // Prices for other products should be aligned relative to the anchor product, taking into account the minimum / maximum deviations.
+  
+
+  // Automatic detection of the anchor product
+  // Only one of the automatic anchor price flags can be enabled: firstIsAnchor or lastIsAnchor or minEquivIsAnchor.
+  
+  // The first product with a non-zero value for the anchor_selector attribute is an anchor product.
+  // Items are sorted according to dependency order.
+  firstIsAnchor: Option<bool>,
+
+  // The last product with a non-zero value for the anchor_selector attribute is an anchor product.
+  // Items are sorted according to dependency order.
+  lastIsAnchor: Option<bool>,
+  
+  // The product with the minimum value of the relative equivalent price is anchor.
+  minEquivIsAnchor: Option<bool>,
+  
+  // Attribute for automatic selection of anchor product
+  anchor_selector: Option<String>,
+
+  // Attribute containing information about the relative size of the product.
+  // Used to define an anchor product with a minimum relative equivalent price.
+  // Relative equivalent price = items[anchor_selector] / items[minEquiv_selector]
+  minEquiv_selector: Option<String>
+  
+  
+}
+```
+
+Example - "Brand Rule"
+
+```json
+{
+  "type": "abs_relations",
+  "id": "yya5weffwe",
+  "name": "Brand Rule",
+  "text": "Within the price zones, the price deviation of brand B should be between -20 $ and 20 $ relative to brand A"
+  "min_abs": -20,
+  "max_abs": 20,
+  "selector": "item.Brend".
+  "order": ["Brand А","Brand B"],
+  "grouper": ["brand_group", "price_zone"]
+}
+
+```
+
+Example - "Cross Zone Rule with Anchor Price"
+```json
+{
+  "type": "abs_relations",
+  "id": "yya53cmfrm",
+  "name": "Cross-zone rule Helsinki region",
+  "text": "The deviation of the price in the price zone of the Helsinki region should be in the range from -10$ to 0$ relative to the price in the price zone of Helsinki. Priority is given to the Helsinki price zone",
+  "grouper": ["item"],
+  "selector": "price_zone",
+  "order": [
+    "Helsinki",
+    "Vantaa Region"
+  ],
+  "min_abs": -10,
+  "max_abs": 0,
+  "firstIsAnchor": true
+}
+```
+
+Example - "Brand Margin Rule"
+```json
+{
+  "type": "abs_relations",
+  "id": "yya5weffwe",
+  "name": "Brand Margin Rule",
+  "text": "Within the price zones, the unit margin of brand B should be between -20 $ and 20 $ relative to brand A"
+  "min_abs": -20,
+  "max_abs": 20,
+  "selector": "item.Brend".
+  "order": ["Brand А","Brand B"],
+  "grouper": ["brand_group", "price_zone"]
+  "opt_target": "margin"
+}
+
 ```
 
 <h2>Rule FixedPrice</h2>
