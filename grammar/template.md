@@ -122,6 +122,7 @@ scalar
   | "minute"      # returns minute component of the <time> value. Output interger type
   | "second"      # returns second component of the <time> value. Output interger type
   | "weekday"     # computes zero based weekday number for the given <date> value where week starts from Sunday. Output interger value
+  | "timestamp"   # returns number of seconds from UNIX EPOCH date assuming datatime is in UTC zone
   
   # Example Input: now.date.weekday
   # Example Input: now.time.hour
