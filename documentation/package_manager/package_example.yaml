@@ -1,0 +1,121 @@
+package: {Package Name} #package name
+
+author: {author} #author name
+
+
+requirements: #requirements will be checked before installing the package
+  packs: #packages required prior to installing this package
+    - id: {package_id}
+  queries: #valid queries required prior to installing this package
+    test_combined:
+      query: |
+          query {
+            dataset {
+              source(name: "combined") {
+                report(
+                  filter0: "date == `0000-00-00` && item=='' && store==''",
+                  vals: " price_zone, item_unit_size, zone_price"
+                ) {
+                  size
+                }
+              }
+            }
+          }
+
+resources: #resources the package will install, each resource is a separate block, can be installed by a separate package
+  packs: #additional existing packages to be installed with this package
+    - id: {package_id}
+
+
+  pages: #pages to be installed with this package
+    {path_to_the_page}: #path to the page, pages needs to be included inside the package
+
+   
+  streams: #streams to be installed
+    {stream_name}:
+      columns:
+        - name: item
+          type: string
+          indexed: true
+      links:
+        - linkName: {link_name}
+          sourceName: {source_name}
+          columnPairs:
+            - srcColumn: item
+              dstColumn: item
+      funcs: {}
+      spouts: {}
+      paused: {true/false} #stream will be paused after installation      
+
+
+  reports: #reports to be installed
+    {report_name}:
+      name: {report_name}
+      source: {}
+      filter0: {}
+      filter1: {}
+      filter2: {}
+      filter3: {}
+      vars: {}
+      dims: item
+      vals: {}
+      cols: {}
+      sort: {}
+      indexes: {}
+
+
+  update_streams: #will update the existing stream with listed blocks (lins & funcs)
+    {stream_name}:
+       links:
+        - linkName: {link_name}
+          sourceName: {source_name}
+          columnPairs:
+            - srcColumn: item
+              dstColumn: item
+            - srcColumn: price_zone
+              dstColumn: price_zone
+
+
+  attributes: #attributes to be installed
+    {attribute_id}:
+      name: {Attribute Name}
+      calc: {} #mandatory
+      format: timestamp
+
+
+  metrics: #metrics to be installed
+    {metric_id}:
+      name: {Metric Name}
+      formula: {formula_id} #mandatory
+      timeframe: {timeframe_id} #mandatory
+      title: {}
+      format: {format_id}
+      style: {}
+      columnClass: {}
+      rowClass: {}
+      editable: {}
+      keys:
+        - item
+        - price_zone
+      stream: {stream_name}
+      actionable: {true/false}
+      actionicon: {}
+      action: {}
+      editValue: {}
+
+
+  formulas: #formulas to be installed
+    {formula_id}:
+      calc: {} #mandatory
+
+
+  formats: #formats to be installed
+    {format_id}:
+      name: {Format Name}
+      calc: {} #mandatory
+
+
+  timeframes: #timeframes to be installed
+    {timeframe_id}:
+      name: {Timeframe Name}
+      calc: {} #mandatory

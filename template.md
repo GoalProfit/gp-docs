@@ -1,8 +1,8 @@
 # Documentation
 
-GoalPlatform is the platform for the rapid development of reliable business applications.
+Digital Wave Platform is the platform for the rapid development of reliable business applications.
 
-## Glossary
+## Digital Wave Analytical Platform
 
 * [Fundamental principles](principles/)
 * [System component](components/)
@@ -21,12 +21,21 @@ GoalPlatform is the platform for the rapid development of reliable business appl
 * [Dataset reports](admin/dataset/reports/)
   * [Report config](admin/report/config/)
 * [Dataset users](admin/dataset/users/)    
+
+## Digital Wave Applications
 * Application settings
   * [Attribute](admin/attribute/config/)
   * [Metric](admin/metric/config/)
   * [Timeframe](admin/timeframe/config/)
   * [Format](admin/format/config/)
   * [Formula](admin/formula/config/)
+* [Documentation, Guides & Resources](documentation/)
+  * [Getting Started](documentation/user_guide/)
+  * [Quick Start Guide](documentation/quickstart_guide/)
+  * [Admin Guide](documentation/admin_guide/)
+  * [User Guide: Price Optimization](documentation/price_rules/)
+  * [User Guide: Markdown Optimization](documentation/markdown/)
+  * [User Guide: PIM AI](documentation/pim)
 
 <style>
 h1 img {
@@ -34,5 +43,10 @@ h1 img {
   height: 22px;
   margin-top: -3px;
   margin-left: -16px;
+}
+ul {
+  line-height: 1.;
+ padding-top: 9px;
+}
 }
 </style>
