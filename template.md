@@ -9,6 +9,7 @@ Digital Wave Platform is the platform for the rapid development of reliable busi
 * [Data model](datamodel/)
 * [Technology stack](techstack/)
 * [Scalability](scalability/)
+* [Instance setup](instance-setup/)
 * [GraphQL API](graphql/)
 * [GraphiQL console](/graphiql)
 * [Syntax grammar](grammar/)
