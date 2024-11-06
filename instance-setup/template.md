@@ -57,7 +57,7 @@ console.cloud.google.com > Compute Engine > VM Instances > Create Instance
     * sudo su
     * ssh-keygen
     * copy id_rsa.pub to [backup server]
-  * sudo snap install microk8s --classic
+  * sudo snap install microk8s --classic --channel=1.30
   * sudo usermod -a -G microk8s ubuntu
   * sudo chown -f -R ubuntu ~/.kube
   * newgrp microk8s
