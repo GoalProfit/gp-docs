@@ -54,17 +54,6 @@
 ## After authorization is confirmed, the server will access the proxy at http://auth-proxy/engine-rest.
 ## where auth-proxy is the authority value, engine-rest is the prefix value, http is the scheme value
 
-## - prefix: /engine-rest
-## scheme: http
-## authority: auth-proxy
-## groups:
-## - admin
-## users: 
-## - user1
-
-## After authorization is confirmed, the server will access the proxy at http://auth-proxy/engine-rest.
-## where auth-proxy is the authority value, engine-rest is the prefix value, http is the scheme value
-
 #proxies:
 # - prefix: /engine-rest
 # scheme: http
@@ -126,3 +115,21 @@
 
 ##This flag allows you to enable or disable the ability to view stream spout data for non-admin users. Non-admin users will be able to view/download loaded files if the flag is set to true.
 #spout_not_admin_access: false
+
+##This block represents the configuration settings for a logging system with tracing capabilities.
+#logging:
+#  enabled: true
+##level: Defines the verbosity level of the logs. In this case, it's set to Trace, meaning all levels of logs (Trace, Debug, Info, Warning, Error, Fatal) will be captured.
+#  level: Trace
+##format: Indicates the output format of the logs. The logs will be serialized as JSON objects.
+#  format: Json
+##buffered_lines_limit: Sets a limit (100,000 lines) on the number of log lines that can be buffered before flushing or dropping them.
+#  buffered_lines_limit: 100000
+#  tracing:
+#    enabled: true
+##host: Specifies the hostname for the tracing server (in this case, jaegertracing).
+#    host: jaegertracing
+##port: The port number (4317) on which the tracing server listens for incoming telemetry data.
+#    port: 4317
+##otlp_timeout: Sets a timeout value (1s or one second) for OpenTelemetry Protocol (OTLP) operations, indicating the maximum time to wait for tracing data to be transmitted.
+#    otlp_timeout: 1s
