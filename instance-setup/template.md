@@ -127,5 +127,11 @@ server {
     `htpasswd -bB admin [admin_password]`
     `htpasswd -bB user [user_password]`
 
+* add datasources and dashboards to grafana
+  * go to `<customer>.digitalwavetechnology.com/grafana`
+  * Side menu > Connections > Data sources > Add new data source > Prometheus > Connection: http://prometheus-server:80 > Save & test
+  * Side menu > Connections > Data sources > Add new data source > Loki > Connection: http://loki:3100 > Save & test
+  * Side menu > Dashboards > New > Import > import dashboard JSONs from https://github.com/GoalProfit/grafana (repeat if needed)
+
 
 
